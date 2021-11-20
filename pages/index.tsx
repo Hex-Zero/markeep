@@ -20,19 +20,39 @@ const data = [
     firstName: "Juan",
     lastName: "Perez",
   },
+  {
+    id: uuidv4(),
+    nickname: "Pedro",
+    firstName: "Pedro",
+    lastName: "Perez",
+  },
+  {
+    id: uuidv4(),
+    nickname: "Chica",
+    firstName: "Ilona",
+    lastName: "Archer",
+  },
+  {
+    id: uuidv4(),
+    nickname: "Chica",
+    firstName: "Ilona",
+    lastName: "Archer",
+  },
 ];
 
 const Home: NextPage = () => {
   return (
     <div className="mrk-hello">
-      {data.map((person) => (
-        <Person
-          key={person.id}
-          fistName={person.firstName}
-          lastName={person.lastName}
-          nickname={person.nickname}
-        />
-      ))}
+      {data.map((person) => {
+        return (
+          <Person
+            key={person.id}
+            fistName={person.firstName}
+            lastName={person.lastName}
+            nickname={person.nickname}
+          />
+        );
+      })}
     </div>
   );
 };
