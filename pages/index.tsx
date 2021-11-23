@@ -22,6 +22,12 @@ const data = [
   },
   {
     id: uuidv4(),
+    nickname: "Pedro",
+    firstName: "Pedro",
+    lastName: "Perez",
+  },
+  {
+    id: uuidv4(),
     nickname: "Chica",
     firstName: "Ilona",
     lastName: "Archer",
