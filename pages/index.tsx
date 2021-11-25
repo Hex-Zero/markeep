@@ -32,6 +32,12 @@ const data = [
     firstName: "Ilona",
     lastName: "Archer",
   },
+  {
+    id: uuidv4(),
+    nickname: "Chica",
+    firstName: "Ilona",
+    lastName: "Archer",
+  },
 ];
 
 const Home: NextPage = () => {
