@@ -1,32 +1,32 @@
 import type { NextPage } from "next";
 import Person from "../components/person";
-import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
 
-interface IPerson {
-  id: string;
-  nickname: string;
-  firstName: string;
-  lastName: string;
-}
+import { useEffect, useState } from "react";
+import AddNewPerson from "../components/addNewPerson";
+import { IPerson } from "../interfaces/IPerson";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
 
-  const handleAddNewPerson = () => {};
+  const getPersonsData = () => {};
 
   useEffect(() => {
     // localStorage.setItem("personArray", JSON.stringify(dataa));
   });
 
   useEffect(() => {
-    if (!data.length) {
+    if (!data.length && localStorage != null) {
       setData(JSON.parse(localStorage.getItem("personArray") || "[]"));
     }
   });
 
   return (
     <div className="mrk-hello">
+      <AddNewPerson
+        personsData={data}
+        handleAddNewPerson={getPersonsData()}
+      ></AddNewPerson>
+
       {data.map((person) => {
         return (
           <Person

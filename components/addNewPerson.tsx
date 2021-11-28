@@ -1,17 +1,30 @@
 import { useFormik } from "formik";
 import * as React from "react";
+import { IPerson } from "../interfaces/IPerson";
+import { v4 as uuidv4 } from "uuid";
 
-export interface IAddNewPersonProps {}
+export interface IAddNewPersonProps {
+  personsData: IPerson[];
+  handleAddNewPerson: void;
+}
 
-export default function AddNewPerson(props: IAddNewPersonProps) {
+export default function AddNewPerson({
+  personsData,
+  handleAddNewPerson,
+}: IAddNewPersonProps) {
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
+      id: "",
       nickname: "",
-      fistName: "",
+      firstName: "",
       lastName: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: (values: IPerson) => {
+      values.id = uuidv4();
+      localStorage.setItem(
+        "personArray",
+        JSON.stringify([...personsData, values])
+      );
     },
   });
   return (
@@ -23,12 +36,12 @@ export default function AddNewPerson(props: IAddNewPersonProps) {
         onChange={handleChange}
         value={values.nickname}
       />
-      <label htmlFor="fistName">First Name</label>
+      <label htmlFor="firstName">First Name</label>
       <input
         type="text"
-        name="fistName"
+        name="firstName"
         onChange={handleChange}
-        value={values.fistName}
+        value={values.firstName}
       />
       <label htmlFor="lastName">Last Name</label>
       <input
