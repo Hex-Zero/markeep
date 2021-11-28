@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Person from "../components/person";
 import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from "react";
 
 interface IPerson {
   id: string;
@@ -9,38 +10,21 @@ interface IPerson {
   lastName: string;
 }
 
-interface data {
-  person: IPerson[];
-}
-
-const data = [
-  {
-    id: uuidv4(),
-    nickname: "Juan",
-    firstName: "Juan",
-    lastName: "Perez",
-  },
-  {
-    id: uuidv4(),
-    nickname: "Pedro",
-    firstName: "Pedro",
-    lastName: "Perez",
-  },
-  {
-    id: uuidv4(),
-    nickname: "Chica",
-    firstName: "Ilona",
-    lastName: "Archer",
-  },
-  {
-    id: uuidv4(),
-    nickname: "Chica",
-    firstName: "Ilona",
-    lastName: "Archer",
-  },
-];
-
 const Home: NextPage = () => {
+  const [data, setData] = useState<IPerson[]>([]);
+
+  const handleAddNewPerson = () => {};
+
+  useEffect(() => {
+    // localStorage.setItem("personArray", JSON.stringify(dataa));
+  });
+
+  useEffect(() => {
+    if (!data.length) {
+      setData(JSON.parse(localStorage.getItem("personArray") || "[]"));
+    }
+  });
+
   return (
     <div className="mrk-hello">
       {data.map((person) => {
