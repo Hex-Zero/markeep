@@ -8,23 +8,25 @@ import { IPerson } from "../interfaces/IPerson";
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
 
-  const getPersonsData = () => {};
-
   useEffect(() => {
-    // localStorage.setItem("personArray", JSON.stringify(dataa));
+    // localStorage.setItem("personArray", JSON.stringify([]));
   });
 
   useEffect(() => {
     if (!data.length && localStorage != null) {
       setData(JSON.parse(localStorage.getItem("personArray") || "[]"));
     }
-  });
+  }, [setData, data.length]);
+
+  const getPersons = () => {
+    setData(JSON.parse(localStorage?.getItem("personArray") || "[]"));
+  };
 
   return (
     <div className="mrk-hello">
       <AddNewPerson
         personsData={data}
-        handleAddNewPerson={getPersonsData()}
+        handleAddNewPerson={() => getPersons()}
       ></AddNewPerson>
 
       {data.map((person) => {

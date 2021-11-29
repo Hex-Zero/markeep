@@ -5,14 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 
 export interface IAddNewPersonProps {
   personsData: IPerson[];
-  handleAddNewPerson: void;
+  handleAddNewPerson: () => void;
 }
 
 export default function AddNewPerson({
   personsData,
   handleAddNewPerson,
 }: IAddNewPersonProps) {
-  const { handleSubmit, handleChange, values } = useFormik({
+  const { handleSubmit, handleChange, values, resetForm } = useFormik({
     initialValues: {
       id: "",
       nickname: "",
@@ -25,6 +25,8 @@ export default function AddNewPerson({
         "personArray",
         JSON.stringify([...personsData, values])
       );
+      handleAddNewPerson();
+      resetForm();
     },
   });
   return (
