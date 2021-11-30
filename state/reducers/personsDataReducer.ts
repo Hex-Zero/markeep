@@ -6,7 +6,10 @@ interface IPersonsDataState {
   personsDataError: string;
 }
 
-const presonsDataReducer = (state: IPersonsDataState, action: any) => {
+const presonsDataReducer = (
+  state: IPersonsDataState,
+  action: any
+): IPersonsDataState => {
   switch (action.type) {
     case "SET_PERSONS_DATA":
       return action.payload;
