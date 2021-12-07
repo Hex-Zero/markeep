@@ -41,9 +41,6 @@ export default function Person({
         <p>
           {fistName} {lastName}
         </p>
-        <div onClick={handleDeletePerson}>
-          <UserTimesSolidSVG />
-        </div>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <h1>{nickname}</h1>

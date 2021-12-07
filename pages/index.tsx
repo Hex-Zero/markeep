@@ -7,6 +7,7 @@ import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
 import { getPersonData } from "../hooks/usePersonData";
+import style from "../styles/person.module.scss";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
@@ -46,19 +47,20 @@ const Home: NextPage = () => {
           handleAddNewPerson={handleAddPerson}
         ></AddNewPerson>
       </Modal>
-
-      {data.map((person) => {
-        return (
-          <Person
-            key={person.id}
-            id={person.id}
-            fistName={person.firstName}
-            lastName={person.lastName}
-            nickname={person.nickname}
-            onRefetch={() => refresh()}
-          />
-        );
-      })}
+      <div className={style.personsContainer}>
+        {data.map((person) => {
+          return (
+            <Person
+              key={person.id}
+              id={person.id}
+              fistName={person.firstName}
+              lastName={person.lastName}
+              nickname={person.nickname}
+              onRefetch={() => refresh()}
+            />
+          );
+        })}
+      </div>
     </main>
   );
 };
