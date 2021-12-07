@@ -4,9 +4,12 @@ import Person from "../components/person";
 import { useEffect, useState } from "react";
 import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
+import { Modal } from "../components/dialogs/modal";
+import buttonStyles from "../styles/button.module.scss";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
+  const [showAddPersonModal, setShowAddPersonModal] = useState(false);
 
   useEffect(() => {
     // localStorage.setItem("personArray", JSON.stringify([]));
@@ -22,12 +25,23 @@ const Home: NextPage = () => {
     setData(JSON.parse(localStorage?.getItem("personArray") || "[]"));
   };
 
+  const handleOpenAddPersonModal = () => {
+    setShowAddPersonModal(true);
+    setTimeout(() => setShowAddPersonModal(false), 1);
+  };
+
   return (
     <div className="mrk-hello">
-      <AddNewPerson
-        personsData={data}
-        handleAddNewPerson={() => getPersons()}
-      ></AddNewPerson>
+      <div
+        className={buttonStyles.openAddButton}
+        onClick={handleOpenAddPersonModal}
+      ></div>
+      <Modal isOpen={showAddPersonModal}>
+        <AddNewPerson
+          personsData={data}
+          handleAddNewPerson={() => getPersons()}
+        ></AddNewPerson>
+      </Modal>
 
       {data.map((person) => {
         return (
