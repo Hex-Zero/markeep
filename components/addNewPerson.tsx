@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import * as React from "react";
 import { IPerson } from "../interfaces/IPerson";
 import { v4 as uuidv4 } from "uuid";
+import { addPersonData } from "../hooks/usePersonData";
 
 export interface IAddNewPersonProps {
   personsData: IPerson[];
@@ -22,10 +23,7 @@ export default function AddNewPerson({
     },
     onSubmit: (values: IPerson) => {
       values.id = uuidv4();
-      localStorage.setItem(
-        "personArray",
-        JSON.stringify([...personsData, values])
-      );
+      addPersonData(personsData, values);
       handleAddNewPerson();
       resetForm();
     },

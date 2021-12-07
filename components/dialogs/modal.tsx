@@ -9,20 +9,13 @@ export interface IModalProps {
 }
 
 export function Modal({ children, isOpen, onClose }: IModalProps) {
-  const [modalOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setIsOpen(isOpen);
-  }, [isOpen]);
-
   const handleModalClose = () => {
-    setIsOpen(false);
     onClose();
   };
 
   return (
     <div
-      className={`${style.modalContainer} ${modalOpen ? style.showModal : ""} `}
+      className={`${style.modalContainer} ${isOpen ? style.showModal : ""} `}
     >
       <div onClick={handleModalClose} className={style.modalOverlay}></div>
       <div className={style.modalContent}>{children}</div>
