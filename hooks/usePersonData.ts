@@ -1,6 +1,6 @@
 import { IPerson } from "../interfaces/IPerson";
 
-export function getPersonData() {
+export function getPersonData(): IPerson[] {
   return JSON.parse(localStorage.getItem("personArray") || "[]");
 }
 

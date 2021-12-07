@@ -12,19 +12,23 @@ const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
   const [showAddPersonModal, setShowAddPersonModal] = useState(true);
 
+  const refresh = () => {
+    setData(getPersonData);
+  };
+
   useEffect(() => {
     // localStorage.setItem("personArray", JSON.stringify([]));
   });
 
   useEffect(() => {
     if (!data.length && localStorage != null) {
-      setData(getPersonData);
+      refresh();
     }
   }, [setData, data.length]);
 
   const handleAddPerson = () => {
-    setData(getPersonData);
     setShowAddPersonModal(false);
+    refresh();
   };
 
   return (
@@ -51,6 +55,7 @@ const Home: NextPage = () => {
             fistName={person.firstName}
             lastName={person.lastName}
             nickname={person.nickname}
+            onRefetch={() => refresh()}
           />
         );
       })}
