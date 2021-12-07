@@ -4,18 +4,21 @@ import style from "../../styles/modal.module.scss";
 
 export interface IModalProps {
   children: React.ReactNode;
-  isOpen: string;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export function Modal({ children, isOpen }: IModalProps) {
+export function Modal({ children, isOpen, onClose }: IModalProps) {
   const [modalOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (isOpen === "open") setIsOpen(true);
-    console.log(isOpen);
-
-    if (isOpen === "close") setIsOpen(false);
+    setIsOpen(isOpen);
   }, [isOpen]);
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+    onClose();
+  };
 
   return (
     <div
@@ -23,11 +26,14 @@ export function Modal({ children, isOpen }: IModalProps) {
         modalOpen ? style.showModal : style.hideModal
       }`}
     >
-      <div
-        onClick={() => setIsOpen(false)}
-        className={style.modalOverlay}
-      ></div>
+      <div onClick={handleModalClose} className={style.modalOverlay}></div>
       <div className={style.modalContent}>{children}</div>
     </div>
   );
+}
+
+export function modalState(change: string, setState: (state: string) => void) {
+  if (change === "open") {
+    setState(change);
+  }
 }

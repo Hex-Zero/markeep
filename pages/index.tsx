@@ -4,13 +4,13 @@ import Person from "../components/person";
 import { useEffect, useState } from "react";
 import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
-import { Modal } from "../components/dialogs/modal";
+import { Modal, modalState } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
 import { getPersonData } from "../hooks/usePersonData";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
-  const [showAddPersonModal, setShowAddPersonModal] = useState("passive");
+  const [showAddPersonModal, setShowAddPersonModal] = useState(true);
 
   useEffect(() => {
     // localStorage.setItem("personArray", JSON.stringify([]));
@@ -22,24 +22,21 @@ const Home: NextPage = () => {
     }
   }, [setData, data.length]);
 
-  const handleOpenAddPersonModal = () => {
-    setShowAddPersonModal("open");
-    setTimeout(() => setShowAddPersonModal("passive"), 1);
-  };
-
   const handleAddPerson = () => {
     setData(getPersonData);
-    setShowAddPersonModal("close");
-    setTimeout(() => setShowAddPersonModal("passive"), 1);
+    setShowAddPersonModal(false);
   };
 
   return (
     <div className="mrk-hello">
       <div
         className={`${buttonStyles.openAddButton}`}
-        onClick={handleOpenAddPersonModal}
+        onClick={() => setShowAddPersonModal(true)}
       ></div>
-      <Modal isOpen={showAddPersonModal}>
+      <Modal
+        isOpen={showAddPersonModal}
+        onClose={() => setShowAddPersonModal(false)}
+      >
         <AddNewPerson
           personsData={data}
           handleAddNewPerson={handleAddPerson}
