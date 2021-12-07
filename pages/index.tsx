@@ -6,10 +6,11 @@ import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
+import { getPersonData } from "../hooks/usePersonData";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
-  const [showAddPersonModal, setShowAddPersonModal] = useState(false);
+  const [showAddPersonModal, setShowAddPersonModal] = useState("passive");
 
   useEffect(() => {
     // localStorage.setItem("personArray", JSON.stringify([]));
@@ -17,29 +18,31 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     if (!data.length && localStorage != null) {
-      setData(JSON.parse(localStorage.getItem("personArray") || "[]"));
+      setData(getPersonData);
     }
   }, [setData, data.length]);
 
-  const getPersons = () => {
-    setData(JSON.parse(localStorage?.getItem("personArray") || "[]"));
+  const handleOpenAddPersonModal = () => {
+    setShowAddPersonModal("open");
+    setTimeout(() => setShowAddPersonModal("passive"), 1);
   };
 
-  const handleOpenAddPersonModal = () => {
-    setShowAddPersonModal(true);
-    setTimeout(() => setShowAddPersonModal(false), 1);
+  const handleAddPerson = () => {
+    setData(getPersonData);
+    setShowAddPersonModal("close");
+    setTimeout(() => setShowAddPersonModal("passive"), 1);
   };
 
   return (
     <div className="mrk-hello">
       <div
-        className={buttonStyles.openAddButton}
+        className={`${buttonStyles.openAddButton}`}
         onClick={handleOpenAddPersonModal}
       ></div>
       <Modal isOpen={showAddPersonModal}>
         <AddNewPerson
           personsData={data}
-          handleAddNewPerson={() => getPersons()}
+          handleAddNewPerson={handleAddPerson}
         ></AddNewPerson>
       </Modal>
 
@@ -47,6 +50,7 @@ const Home: NextPage = () => {
         return (
           <Person
             key={person.id}
+            id={person.id}
             fistName={person.firstName}
             lastName={person.lastName}
             nickname={person.nickname}

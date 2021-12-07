@@ -4,18 +4,25 @@ import style from "../../styles/modal.module.scss";
 
 export interface IModalProps {
   children: React.ReactNode;
-  isOpen: boolean;
+  isOpen: string;
 }
 
 export function Modal({ children, isOpen }: IModalProps) {
-  const [modalOpen, setIsOpen] = useState(isOpen);
+  const [modalOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (isOpen) setIsOpen(isOpen);
+    if (isOpen === "open") setIsOpen(true);
+    console.log(isOpen);
+
+    if (isOpen === "close") setIsOpen(false);
   }, [isOpen]);
 
   return (
-    <div className={modalOpen ? style.showModal : style.hideModal}>
+    <div
+      className={`${style.modalContainer} ${
+        modalOpen ? style.showModal : style.hideModal
+      }`}
+    >
       <div
         onClick={() => setIsOpen(false)}
         className={style.modalOverlay}

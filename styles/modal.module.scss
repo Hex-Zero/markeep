@@ -8,7 +8,7 @@
   z-index: 100;
 }
 
-.showModal {
+.modalContainer {
   position: fixed;
   top: 0;
   left: 0;
@@ -20,17 +20,53 @@
   align-items: flex-start;
 }
 
+.showModal {
+  animation: animateIn 0.5s ease-in-out;
+}
+
+.hideModal {
+  animation: animateOut 0.5s ease-in-out forwards;
+}
+
 .modalContent {
   position: relative;
-  width: 80%;
-  max-width: 500px;
+  width: 600px;
+  max-width: calc(100vw - 2rem);
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
+  margin: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 101;
 }
 
-.hideModal {
-  display: none;
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    display: none;
+  }
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  99% {
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+    height: 0;
+  }
 }
