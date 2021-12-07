@@ -18,6 +18,7 @@ export default function AddNewPerson({
       nickname: "",
       firstName: "",
       lastName: "",
+      additionalInputs: [],
     },
     onSubmit: (values: IPerson) => {
       values.id = uuidv4();
