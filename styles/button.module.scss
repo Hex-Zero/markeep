@@ -1,5 +1,5 @@
 .openAddButton {
-  background-color: #31ad00;
+  background-color: #10c200;
   border-radius: 50%;
   cursor: pointer;
   height: 2.5rem;
@@ -9,7 +9,10 @@
   bottom: 1rem;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
   &:hover {
-    background-color: #2f9d00;
+    background-color: #0b8500;
+  }
+  &:active {
+    background-color: #10c200;
   }
   &::after {
     content: "+";

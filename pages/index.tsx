@@ -32,7 +32,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="mrk-hello">
+    <main>
       <div
         className={`${buttonStyles.openAddButton}`}
         onClick={() => setShowAddPersonModal(true)}
@@ -59,7 +59,7 @@ const Home: NextPage = () => {
           />
         );
       })}
-    </div>
+    </main>
   );
 };
 

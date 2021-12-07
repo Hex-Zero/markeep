@@ -3,6 +3,7 @@ import * as React from "react";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
+import style from "../styles/person.module.scss";
 
 export interface IPersonProps {
   nickname: string;
@@ -33,7 +34,7 @@ export default function Person({
   };
   return (
     <div>
-      <div onClick={() => setModalOpen(true)}>
+      <div className={style.personCard} onClick={() => setModalOpen(true)}>
         <h1>{nickname}</h1>
         <p>
           {fistName} {lastName}
