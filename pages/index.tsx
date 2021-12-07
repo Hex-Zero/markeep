@@ -4,13 +4,13 @@ import Person from "../components/person";
 import { useEffect, useState } from "react";
 import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
-import { Modal, modalState } from "../components/dialogs/modal";
+import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
 import { getPersonData } from "../hooks/usePersonData";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
-  const [showAddPersonModal, setShowAddPersonModal] = useState(true);
+  const [showAddPersonModal, setShowAddPersonModal] = useState(false);
 
   const refresh = () => {
     setData(getPersonData);

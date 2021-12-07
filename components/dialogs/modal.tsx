@@ -22,18 +22,10 @@ export function Modal({ children, isOpen, onClose }: IModalProps) {
 
   return (
     <div
-      className={`${style.modalContainer} ${
-        modalOpen ? style.showModal : style.hideModal
-      }`}
+      className={`${style.modalContainer} ${modalOpen ? style.showModal : ""} `}
     >
       <div onClick={handleModalClose} className={style.modalOverlay}></div>
       <div className={style.modalContent}>{children}</div>
     </div>
   );
-}
-
-export function modalState(change: string, setState: (state: string) => void) {
-  if (change === "open") {
-    setState(change);
-  }
 }

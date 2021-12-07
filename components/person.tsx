@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as React from "react";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
 import { IPerson } from "../interfaces/IPerson";
+import { Modal } from "./dialogs/modal";
 
 export interface IPersonProps {
   nickname: string;
@@ -18,6 +19,8 @@ export default function Person({
   id,
   onRefetch,
 }: IPersonProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const handleDeletePerson = () => {
     try {
       setPersonDate(
@@ -30,11 +33,20 @@ export default function Person({
   };
   return (
     <div>
-      <h1>{nickname}</h1>
-      <p>
-        {fistName} {lastName}
-      </p>
-      <div onClick={handleDeletePerson}>delete</div>
+      <div onClick={() => setModalOpen(true)}>
+        <h1>{nickname}</h1>
+        <p>
+          {fistName} {lastName}
+        </p>
+        <div onClick={handleDeletePerson}>delete</div>
+      </div>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <h1>{nickname}</h1>
+        <p>
+          {fistName} {lastName}
+        </p>
+        <div onClick={handleDeletePerson}>delete</div>
+      </Modal>
     </div>
   );
 }
