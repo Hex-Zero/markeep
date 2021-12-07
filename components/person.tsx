@@ -5,6 +5,7 @@ import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
 import { TextArea } from "./inputs/textArea";
+import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
 
 export interface IPersonProps {
   nickname: string;
@@ -40,14 +41,18 @@ export default function Person({
         <p>
           {fistName} {lastName}
         </p>
-        <div onClick={handleDeletePerson}>delete</div>
+        <div onClick={handleDeletePerson}>
+          <UserTimesSolidSVG />
+        </div>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
         <h1>{nickname}</h1>
         <p>
           {fistName} {lastName}
         </p>
-        <div onClick={handleDeletePerson}>delete</div>
+        <div onClick={handleDeletePerson}>
+          <UserTimesSolidSVG />
+        </div>
         <TextArea label="Memo" id={id}></TextArea>
       </Modal>
     </div>

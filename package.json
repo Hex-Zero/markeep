@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.1.1",
     "@types/react-redux": "^7.1.20",
     "@types/uuid": "^8.3.3",
     "formik": "^2.2.9",
