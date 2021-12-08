@@ -9,7 +9,7 @@ export function UserTimesSolidSVG(props: IUserTimesSolidSVGProps) {
       focusable="false"
       data-prefix="fas"
       data-icon="user-times"
-      className="svg-inline--fa fa-user-times fa-w-20"
+      className={`svg-inline--fa fa-user-times fa-w-20 cursor-pointer`}
       height="1em"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
