@@ -3,15 +3,18 @@ import * as React from "react";
 import { IPerson } from "../interfaces/IPerson";
 import { v4 as uuidv4 } from "uuid";
 import { addPersonData } from "../hooks/usePersonData";
+import { useEffect, useRef } from "react";
 
 export interface IAddNewPersonProps {
   personsData: IPerson[];
   handleAddNewPerson: () => void;
+  onOpenModal: () => void;
 }
 
 export default function AddNewPerson({
   personsData,
   handleAddNewPerson,
+  onOpenModal,
 }: IAddNewPersonProps) {
   const { handleSubmit, handleChange, values, resetForm } = useFormik({
     initialValues: {
@@ -28,10 +31,18 @@ export default function AddNewPerson({
       resetForm();
     },
   });
+
+  const nicknameInput = useRef(null);
+
+  useEffect(() => {
+    console.log(nicknameInput.current);
+  }, []);
+
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="nickname">Nickname</label>
       <input
+        ref={nicknameInput}
         type="text"
         name="nickname"
         onChange={handleChange}
