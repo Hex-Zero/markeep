@@ -45,6 +45,7 @@ const Home: NextPage = () => {
         <AddNewPerson
           personsData={data}
           handleAddNewPerson={handleAddPerson}
+          onOpenModal={showAddPersonModal}
         ></AddNewPerson>
       </Modal>
       <div className={style.personsContainer}>

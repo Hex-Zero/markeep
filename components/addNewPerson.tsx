@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 export interface IAddNewPersonProps {
   personsData: IPerson[];
   handleAddNewPerson: () => void;
-  onOpenModal: () => void;
+  onOpenModal: boolean;
 }
 
 export default function AddNewPerson({
@@ -32,11 +32,11 @@ export default function AddNewPerson({
     },
   });
 
-  const nicknameInput = useRef(null);
+  const nicknameInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    console.log(nicknameInput.current);
-  }, []);
+    onOpenModal && nicknameInput.current?.focus();
+  }, [onOpenModal]);
 
   return (
     <form onSubmit={handleSubmit}>
