@@ -48,6 +48,7 @@ const Home: NextPage = () => {
         {data.map((person) => {
           return (
             <Person
+              person={person}
               key={person.id}
               id={person.id}
               fistName={person.firstName}

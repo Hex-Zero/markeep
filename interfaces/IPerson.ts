@@ -2,7 +2,7 @@ export enum inputType {
   textArea,
 }
 
-interface ICustomInput {
+export interface ICustomInput {
   name: string;
   label: string;
   type: inputType;

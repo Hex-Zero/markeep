@@ -1,13 +1,15 @@
 import { useState } from "react";
 import * as React from "react";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
-import { IPerson } from "../interfaces/IPerson";
+import { ICustomInput, inputType, IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
 import { TextArea } from "./inputs/textArea";
 import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
+import { v4 as uuidv4 } from "uuid";
 
 export interface IPersonProps {
+  person: IPerson;
   nickname: string;
   fistName: string;
   lastName: string;
@@ -16,6 +18,7 @@ export interface IPersonProps {
 }
 
 export default function Person({
+  person,
   nickname,
   fistName,
   lastName,
@@ -34,6 +37,26 @@ export default function Person({
       console.log(e);
     }
   };
+
+  const handleAddInput = () => {
+    const newInputs: ICustomInput = {
+      name: "Test",
+      label: "Test",
+      type: inputType.textArea,
+      data: "",
+      id: uuidv4(),
+    };
+    setPersonDate(
+      getPersonData().map((person: IPerson) => {
+        if (person.id === id) {
+          person.additionalInputs.push(newInputs);
+        }
+        return person;
+      })
+    );
+    onRefetch();
+  };
+
   return (
     <div>
       <div className={style.personCard} onClick={() => setModalOpen(true)}>
@@ -50,7 +73,17 @@ export default function Person({
         <div onClick={handleDeletePerson}>
           <UserTimesSolidSVG />
         </div>
-        <TextArea label="Memo" id={id}></TextArea>
+        {person.additionalInputs.map((input: ICustomInput) => {
+          return (
+            <TextArea
+              id={input.id}
+              key={input.id}
+              label={input.label}
+              value={input.data}
+            />
+          );
+        })}
+        <button onClick={handleAddInput}>+</button>
       </Modal>
     </div>
   );
