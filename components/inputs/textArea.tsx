@@ -24,9 +24,11 @@ export function TextArea(props: ITextAreaProps) {
 
   return (
     <>
-      <label htmlFor={`textAreaId-${props.id}`}>{props.label}</label>
+      <div className="labelContainer">
+        <label htmlFor={`textAreaId-${props.id}`}>{props.label}</label>
+        <div onClick={() => handleDeleteInput()}>x</div>
+      </div>
       <textarea id={`textAreaId-${props.id}`} />{" "}
-      <div onClick={() => handleDeleteInput()}>x</div>
     </>
   );
 }
