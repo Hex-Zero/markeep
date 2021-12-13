@@ -11,10 +11,10 @@ import { v4 as uuidv4 } from "uuid";
 export interface IPersonProps {
   person: IPerson;
   id: string;
-  onRefetch: () => void;
+  onRefresh: () => void;
 }
 
-export default function Person({ person, id, onRefetch }: IPersonProps) {
+export default function Person({ person, id, onRefresh }: IPersonProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleDeletePerson = () => {
@@ -22,7 +22,7 @@ export default function Person({ person, id, onRefetch }: IPersonProps) {
       setPersonDate(
         getPersonData().filter((person: IPerson) => person.id !== id)
       );
-      onRefetch();
+      onRefresh();
     } catch (e) {
       console.log(e);
     }
@@ -44,7 +44,7 @@ export default function Person({ person, id, onRefetch }: IPersonProps) {
         return person;
       })
     );
-    onRefetch();
+    onRefresh();
   };
 
   return (
@@ -71,6 +71,7 @@ export default function Person({ person, id, onRefetch }: IPersonProps) {
                 key={input.id}
                 label={input.label}
                 value={input.data}
+                onRefresh={onRefresh}
               />
             );
           })}

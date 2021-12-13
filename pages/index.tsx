@@ -51,7 +51,7 @@ const Home: NextPage = () => {
               person={person}
               key={person.id}
               id={person.id}
-              onRefetch={() => refresh()}
+              onRefresh={() => refresh()}
             />
           );
         })}
