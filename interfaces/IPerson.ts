@@ -1,7 +1,11 @@
+export enum inputType {
+  textArea,
+}
+
 interface ICustomInput {
   name: string;
   label: string;
-  type: string;
+  type: inputType;
   data: any;
   id: string;
 }

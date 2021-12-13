@@ -18,10 +18,6 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    // localStorage.setItem("personArray", JSON.stringify([]));
-  });
-
-  useEffect(() => {
     if (!data.length && localStorage != null) {
       refresh();
     }
