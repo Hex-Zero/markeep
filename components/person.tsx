@@ -10,21 +10,11 @@ import { v4 as uuidv4 } from "uuid";
 
 export interface IPersonProps {
   person: IPerson;
-  nickname: string;
-  fistName: string;
-  lastName: string;
   id: string;
   onRefetch: () => void;
 }
 
-export default function Person({
-  person,
-  nickname,
-  fistName,
-  lastName,
-  id,
-  onRefetch,
-}: IPersonProps) {
+export default function Person({ person, id, onRefetch }: IPersonProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleDeletePerson = () => {
@@ -60,15 +50,15 @@ export default function Person({
   return (
     <div>
       <div className={style.personCard} onClick={() => setModalOpen(true)}>
-        <h1>{nickname}</h1>
+        <h1>{person.nickname}</h1>
         <p>
-          {fistName} {lastName}
+          {person.firstName} {person.lastName}
         </p>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <h1>{nickname}</h1>
+        <h1>{person.nickname}</h1>
         <p>
-          {fistName} {lastName}
+          {person.firstName} {person.lastName}
         </p>
         <div onClick={handleDeletePerson}>
           <UserTimesSolidSVG />

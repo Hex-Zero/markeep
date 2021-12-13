@@ -51,9 +51,6 @@ const Home: NextPage = () => {
               person={person}
               key={person.id}
               id={person.id}
-              fistName={person.firstName}
-              lastName={person.lastName}
-              nickname={person.nickname}
               onRefetch={() => refresh()}
             />
           );
