@@ -56,24 +56,26 @@ export default function Person({ person, id, onRefetch }: IPersonProps) {
         </p>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <h1>{person.nickname}</h1>
-        <p>
-          {person.firstName} {person.lastName}
-        </p>
-        <div onClick={handleDeletePerson}>
-          <UserTimesSolidSVG />
+        <div className={style.personModalContent}>
+          <h1>{person.nickname}</h1>
+          <p>
+            {person.firstName} {person.lastName}
+          </p>
+          <div onClick={handleDeletePerson}>
+            <UserTimesSolidSVG />
+          </div>
+          {person.additionalInputs.map((input: ICustomInput) => {
+            return (
+              <TextArea
+                id={input.id}
+                key={input.id}
+                label={input.label}
+                value={input.data}
+              />
+            );
+          })}
+          <button onClick={handleAddInput}>+</button>
         </div>
-        {person.additionalInputs.map((input: ICustomInput) => {
-          return (
-            <TextArea
-              id={input.id}
-              key={input.id}
-              label={input.label}
-              value={input.data}
-            />
-          );
-        })}
-        <button onClick={handleAddInput}>+</button>
       </Modal>
     </div>
   );
