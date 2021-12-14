@@ -39,7 +39,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
   return (
     <div>
       <div className={style.personCard} onClick={() => setModalOpen(true)}>
-        <h1>{person.nickname}</h1>
+        <h1>{person.nickname || person.firstName}</h1>
         <p>
           {person.firstName} {person.lastName}
         </p>

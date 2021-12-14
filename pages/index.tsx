@@ -15,6 +15,7 @@ const Home: NextPage = () => {
 
   const refresh = () => {
     setData(getPersonData);
+    console.log(data);
   };
 
   useEffect(() => {

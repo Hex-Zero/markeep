@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as React from "react";
-import { IPerson } from "../interfaces/IPerson";
+import { inputType, IPerson } from "../interfaces/IPerson";
 import { v4 as uuidv4 } from "uuid";
 import { addPersonData } from "../hooks/usePersonData";
 import { useEffect, useRef } from "react";
@@ -26,6 +26,13 @@ export default function AddNewPerson({
     },
     onSubmit: (values: IPerson) => {
       values.id = uuidv4();
+      values.additionalInputs.push({
+        name: "NoteArea",
+        label: "New Note",
+        id: uuidv4(),
+        type: inputType.textArea,
+        data: "",
+      });
       addPersonData(personsData, values);
       handleAddNewPerson();
       resetForm();
