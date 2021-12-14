@@ -20,12 +20,12 @@ export function Modal({
 
   return (
     <div
-      className={`${modalContainerClass} ${style.modalContainer} ${
-        isOpen ? style.showModal : ""
-      } `}
+      className={`${style.modalContainer} ${isOpen ? style.showModal : ""} `}
     >
       <div onClick={handleModalClose} className={style.modalOverlay}></div>
-      <div className={style.modalContent}>{children}</div>
+      <div className={`${modalContainerClass} ${style.modalContent}`}>
+        {children}
+      </div>
     </div>
   );
 }

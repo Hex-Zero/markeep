@@ -11,8 +11,8 @@ export interface IAddNewTextAreaProps {
 
 export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
   const newInputs: ICustomInput = {
-    name: "Test",
-    label: "Test",
+    name: "NoteArea",
+    label: "New Note",
     type: inputType.textArea,
     data: "",
     id: uuidv4(),
