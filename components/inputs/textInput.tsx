@@ -1,4 +1,5 @@
 import * as React from "react";
+import style from "../../styles/input.module.scss";
 
 export interface ITextInputProps {
   label: string;
@@ -15,7 +16,7 @@ export default function TextInput(props: ITextInputProps) {
 
   return (
     <div>
-      <div className="labelContainer">
+      <div className={style.labelContainer}>
         <label htmlFor={`textInputId-${props.id}`}>{props.label}</label>
         <div onClick={() => handleDeleteInput()}>x</div>
       </div>

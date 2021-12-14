@@ -44,7 +44,11 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
           {person.firstName} {person.lastName}
         </p>
       </div>
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+      <Modal
+        modalContainerClass={style.personModal}
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+      >
         <div className={style.personModalContent}>
           <h1>{person.nickname}</h1>
           <p>

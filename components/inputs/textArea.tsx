@@ -2,6 +2,7 @@ import * as React from "react";
 import { ICustomInput, inputType, IPerson } from "../../interfaces/IPerson";
 import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
 import { v4 as uuidv4 } from "uuid";
+import style from "../../styles/input.module.scss";
 
 export interface IAddNewTextAreaProps {
   label: string;
@@ -48,11 +49,11 @@ export function TextArea(props: ITextAreaProps) {
 
   return (
     <>
-      <div className="labelContainer">
+      <div className={style.labelContainer}>
         <label htmlFor={`textAreaId-${props.id}`}>{props.label}</label>
         <div onClick={() => handleDeleteInput()}>x</div>
       </div>
-      <textarea id={`textAreaId-${props.id}`} />{" "}
+      <textarea className={style.textAreaInput} id={`textAreaId-${props.id}`} />{" "}
     </>
   );
 }
