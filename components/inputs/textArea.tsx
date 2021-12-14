@@ -1,8 +1,9 @@
 import * as React from "react";
-import { ICustomInput, inputType, IPerson } from "../../interfaces/IPerson";
+import { IPerson } from "../../interfaces/IPerson";
 import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
 import { v4 as uuidv4 } from "uuid";
 import style from "../../styles/input.module.scss";
+import { ICustomInput, inputType } from "../../interfaces/IInputType";
 
 export interface IAddNewTextAreaProps {
   label: string;

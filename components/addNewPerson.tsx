@@ -1,9 +1,10 @@
 import { useFormik } from "formik";
 import * as React from "react";
-import { inputType, IPerson } from "../interfaces/IPerson";
+import { IPerson } from "../interfaces/IPerson";
 import { v4 as uuidv4 } from "uuid";
 import { addPersonData } from "../hooks/usePersonData";
 import { useEffect, useRef } from "react";
+import { inputType } from "../interfaces/IInputType";
 
 export interface IAddNewPersonProps {
   personsData: IPerson[];

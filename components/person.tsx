@@ -1,11 +1,12 @@
 import { useState } from "react";
 import * as React from "react";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
-import { ICustomInput, IPerson } from "../interfaces/IPerson";
+import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
 import { TextArea, handleAddTextArea } from "./inputs/textArea";
 import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
+import { ICustomInput } from "../interfaces/IInputType";
 
 export interface IPersonProps {
   person: IPerson;
