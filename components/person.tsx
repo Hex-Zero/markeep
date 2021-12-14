@@ -1,12 +1,11 @@
 import { useState } from "react";
 import * as React from "react";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
-import { ICustomInput, inputType, IPerson } from "../interfaces/IPerson";
+import { ICustomInput, IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
-import { TextArea } from "./inputs/textArea";
+import { TextArea, handleAddTextArea } from "./inputs/textArea";
 import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
-import { v4 as uuidv4 } from "uuid";
 
 export interface IPersonProps {
   person: IPerson;
@@ -28,23 +27,13 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
     }
   };
 
-  const handleAddInput = () => {
-    const newInputs: ICustomInput = {
-      name: "Test",
-      label: "Test",
-      type: inputType.textArea,
-      data: "",
-      id: uuidv4(),
-    };
-    setPersonDate(
-      getPersonData().map((person: IPerson) => {
-        if (person.id === id) {
-          person.additionalInputs.push(newInputs);
-        }
-        return person;
-      })
-    );
-    onRefresh();
+  const AddTextArea = () => {
+    try {
+      handleAddTextArea({ label: "Test", id: person.id });
+      onRefresh();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -75,7 +64,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
               />
             );
           })}
-          <button onClick={handleAddInput}>+</button>
+          <button onClick={AddTextArea}>+</button>
         </div>
       </Modal>
     </div>
