@@ -6,7 +6,8 @@ import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
 import { TextArea, handleAddTextArea } from "./inputs/textArea";
 import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
-import { ICustomInput } from "../interfaces/IInputType";
+import { ICustomInput, inputType } from "../interfaces/IInputType";
+import { TextInput, handleAddTextInput } from "./inputs/textInput";
 
 export interface IPersonProps {
   person: IPerson;
@@ -37,6 +38,15 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
     }
   };
 
+  const AddTextInput = () => {
+    try {
+      handleAddTextInput("Test", person.id);
+      onRefresh();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div>
       <div className={style.personCard} onClick={() => setModalOpen(true)}>
@@ -59,17 +69,31 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
             <UserTimesSolidSVG />
           </div>
           {person.additionalInputs.map((input: ICustomInput) => {
-            return (
-              <TextArea
-                id={input.id}
-                key={input.id}
-                label={input.label}
-                value={input.data}
-                onRefresh={onRefresh}
-              />
-            );
+            if (input.type === inputType.textArea) {
+              return (
+                <TextArea
+                  id={input.id}
+                  key={input.id}
+                  label={input.label}
+                  value={input.data}
+                  onRefresh={onRefresh}
+                />
+              );
+            } else if (input.type === inputType.textInput) {
+              return (
+                <TextInput
+                  id={input.id}
+                  name={input.name}
+                  key={input.id}
+                  label={input.label}
+                  value={input.data}
+                  onRefresh={onRefresh}
+                />
+              );
+            }
           })}
           <button onClick={AddTextArea}>+</button>
+          <button onClick={AddTextInput}>+</button>
         </div>
       </Modal>
     </div>
