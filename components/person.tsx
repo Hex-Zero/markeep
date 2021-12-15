@@ -8,6 +8,7 @@ import { TextArea, handleAddTextArea } from "./inputs/textArea";
 import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
 import { ICustomInput, inputType } from "../interfaces/IInputType";
 import { TextInput, handleAddTextInput } from "./inputs/textInput";
+import PersonMoreDropdown from "./dropdown/personMoreDropdown";
 
 export interface IPersonProps {
   person: IPerson;
@@ -68,6 +69,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
           <div onClick={handleDeletePerson}>
             <UserTimesSolidSVG />
           </div>
+          <PersonMoreDropdown>Hello</PersonMoreDropdown>
           {person.additionalInputs.map((input: ICustomInput) => {
             if (input.type === inputType.textArea) {
               return (
