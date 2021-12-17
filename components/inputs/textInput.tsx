@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ICustomInput, inputType } from "../../interfaces/IInputType";
-import style from "../../styles/input.module.scss";
 import { v4 as uuidv4 } from "uuid";
 import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
 import { IPerson } from "../../interfaces/IPerson";
+import Label from "../label";
 
 export interface ITextInputProps {
   label: string;
@@ -46,10 +46,11 @@ export function TextInput(props: ITextInputProps) {
 
   return (
     <div>
-      <div className={style.labelContainer}>
-        <label htmlFor={`textInputId-${props.id}`}>{props.label}</label>
-        <div onClick={() => handleDeleteInput()}>x</div>
-      </div>
+      <Label
+        label={props.label}
+        id={props.id}
+        handleDeleteInput={handleDeleteInput}
+      />
       <input type={inputType.textInput} id={`textInputId-${props.id}`} />
     </div>
   );

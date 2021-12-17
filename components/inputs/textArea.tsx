@@ -4,6 +4,7 @@ import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
 import { v4 as uuidv4 } from "uuid";
 import style from "../../styles/input.module.scss";
 import { ICustomInput, inputType } from "../../interfaces/IInputType";
+import Label from "../label";
 
 export interface IAddNewTextAreaProps {
   label: string;
@@ -50,10 +51,11 @@ export function TextArea(props: ITextAreaProps) {
 
   return (
     <>
-      <div className={style.labelContainer}>
-        <label htmlFor={`textAreaId-${props.id}`}>{props.label}</label>
-        <div onClick={() => handleDeleteInput()}>x</div>
-      </div>
+      <Label
+        label={props.label}
+        id={props.id}
+        handleDeleteInput={handleDeleteInput}
+      />
       <textarea className={style.textAreaInput} id={`textAreaId-${props.id}`} />{" "}
     </>
   );
