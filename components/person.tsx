@@ -9,6 +9,7 @@ import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
 import { ICustomInput, inputType } from "../interfaces/IInputType";
 import { TextInput, handleAddTextInput } from "./inputs/textInput";
 import PersonMoreDropdown from "./dropdown/personMoreDropdown";
+import InputRenderHelper from "../helpers/inputRenderHelper";
 
 export interface IPersonProps {
   person: IPerson;
@@ -70,30 +71,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
             <UserTimesSolidSVG />
           </div>
           <PersonMoreDropdown>Hello</PersonMoreDropdown>
-          {person.additionalInputs.map((input: ICustomInput) => {
-            if (input.type === inputType.textArea) {
-              return (
-                <TextArea
-                  id={input.id}
-                  key={input.id}
-                  label={input.label}
-                  value={input.data}
-                  onRefresh={onRefresh}
-                />
-              );
-            } else if (input.type === inputType.textInput) {
-              return (
-                <TextInput
-                  id={input.id}
-                  name={input.name}
-                  key={input.id}
-                  label={input.label}
-                  value={input.data}
-                  onRefresh={onRefresh}
-                />
-              );
-            }
-          })}
+          <InputRenderHelper person={person} onRefresh={onRefresh} />
           <button onClick={AddTextArea}>+</button>
           <button onClick={AddTextInput}>+</button>
         </div>
