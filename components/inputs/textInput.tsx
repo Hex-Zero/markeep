@@ -71,7 +71,7 @@ export function TextInput(props: ITextInputProps) {
   };
 
   return (
-    <div>
+    <>
       <Label
         label={props.label}
         id={props.id}
@@ -94,6 +94,6 @@ export function TextInput(props: ITextInputProps) {
         type={inputType.textInput}
         id={`textInputId-${props.id}`}
       />
-    </div>
+    </>
   );
 }

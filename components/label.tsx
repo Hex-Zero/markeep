@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TimesSolid } from "../assets/timeSolid";
 import { getPersonData, setPersonDate } from "../hooks/usePersonData";
 import { ICustomInput } from "../interfaces/IInputType";
 import { IPerson } from "../interfaces/IPerson";
@@ -53,7 +54,7 @@ export default function Label(props: ILabelProps) {
     }
   };
   return (
-    <div>
+    <>
       <div className={style.labelContainer}>
         <label htmlFor={`textInputId-${props.id}`}>
           <input
@@ -67,15 +68,14 @@ export default function Label(props: ILabelProps) {
               }
             }}
           />
+          {/* 
+          {isEditing ? <div>SAVE</div> : <div>EDIT</div>} */}
         </label>
-        {isEditing ? (
-          <div onClick={() => handleEditLabel(false)}>SAVE</div>
-        ) : (
-          <div onClick={() => handleEditLabel(true)}>EDIT</div>
-        )}
 
-        <div onClick={() => props.handleDeleteInput()}>x</div>
+        <div onClick={() => props.handleDeleteInput()}>
+          <TimesSolid></TimesSolid>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

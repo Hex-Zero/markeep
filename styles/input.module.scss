@@ -1,8 +1,21 @@
 .labelContainer {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: space-between;
   width: 100%;
+  & > label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    margin-top: 0.5rem;
+    min-width: 100%;
+
+    & > input {
+      border: none;
+      min-width: 100%;
+      width: min-content;
+    }
+  }
 }
 
 .textInput {
