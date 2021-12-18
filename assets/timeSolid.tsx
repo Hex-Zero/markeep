@@ -1,16 +1,18 @@
 import * as React from "react";
 
-export interface ITimesSolidProps {}
+export interface ITimesSolidProps {
+  onClick: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+}
 
 export function TimesSolid(props: ITimesSolidProps) {
   return (
     <svg
+      onClick={(e) => props.onClick(e)}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
       data-prefix="fas"
       data-icon="times"
-      height="1em"
       className="svg-inline--fa fa-times fa-w-11"
       role="img"
       viewBox="0 0 352 512"

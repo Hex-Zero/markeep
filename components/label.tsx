@@ -72,9 +72,7 @@ export default function Label(props: ILabelProps) {
           {isEditing ? <div>SAVE</div> : <div>EDIT</div>} */}
         </label>
 
-        <div onClick={() => props.handleDeleteInput()}>
-          <TimesSolid></TimesSolid>
-        </div>
+        <TimesSolid onClick={() => props.handleDeleteInput()}></TimesSolid>
       </div>
     </>
   );
