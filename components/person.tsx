@@ -67,13 +67,19 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
           <p>
             {person.firstName} {person.lastName}
           </p>
-          <div onClick={handleDeletePerson}>
-            <UserTimesSolidSVG />
-          </div>
-          <PersonMoreDropdown>Hello</PersonMoreDropdown>
+          <PersonMoreDropdown>
+            <label>Add</label>
+            <ul>
+              <li onClick={AddTextInput}>Text Field</li>
+
+              <li onClick={AddTextArea}>Text Area</li>
+            </ul>
+            <label>Manage</label>
+            <ul>
+              <li onClick={handleDeletePerson}>Delete</li>
+            </ul>
+          </PersonMoreDropdown>
           <InputRenderHelper person={person} onRefresh={onRefresh} />
-          <button onClick={AddTextArea}>+</button>
-          <button onClick={AddTextInput}>+</button>
         </div>
       </Modal>
     </div>
