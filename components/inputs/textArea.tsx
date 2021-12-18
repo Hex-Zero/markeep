@@ -34,6 +34,7 @@ export interface ITextAreaProps {
   value?: string;
   id: string;
   onRefresh: () => void;
+  onEditLabel: (label: string) => void;
 }
 
 export function TextArea(props: ITextAreaProps) {
@@ -55,6 +56,7 @@ export function TextArea(props: ITextAreaProps) {
         label={props.label}
         id={props.id}
         handleDeleteInput={handleDeleteInput}
+        onEditLabel={(label) => props.onEditLabel(label)}
       />
       <textarea className={style.textAreaInput} id={`textAreaId-${props.id}`} />{" "}
     </>

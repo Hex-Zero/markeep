@@ -11,6 +11,7 @@ export interface ITextInputProps {
   id: string;
   onRefresh: () => void;
   name: string;
+  onEditLabel: (label: string) => void;
 }
 
 export const handleAddTextInput = (label: string, personId: string) => {
@@ -50,6 +51,7 @@ export function TextInput(props: ITextInputProps) {
         label={props.label}
         id={props.id}
         handleDeleteInput={handleDeleteInput}
+        onEditLabel={(label) => props.onEditLabel(label)}
       />
       <input type={inputType.textInput} id={`textInputId-${props.id}`} />
     </div>
