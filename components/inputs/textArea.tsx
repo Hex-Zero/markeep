@@ -11,6 +11,12 @@ export interface IAddNewTextAreaProps {
   id: string;
 }
 
+export interface ISaveTextAreaProps {
+  personId: string;
+  inputId: string;
+  data: string;
+}
+
 export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
   const newInputs: ICustomInput = {
     name: "NoteArea",
@@ -29,15 +35,34 @@ export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
   );
 };
 
+export const handleSaveTextArea = (props: ISaveTextAreaProps) => {
+  setPersonDate(
+    getPersonData().map((person: IPerson) => {
+      if (person.id === props.personId) {
+        person.additionalInputs.map((input: ICustomInput) => {
+          if (input.id === props.inputId) {
+            input.data = props.data;
+          }
+        });
+      }
+      return person;
+    })
+  );
+};
+
 export interface ITextAreaProps {
   label: string;
   value?: string;
   id: string;
   onRefresh: () => void;
   onEditLabel: (label: string) => void;
+  onSave: (payload: string) => void;
 }
 
 export function TextArea(props: ITextAreaProps) {
+  const [value, setValue] = React.useState(props.value || "");
+  const inputRef = React.useRef<HTMLTextAreaElement>(null);
+
   const handleDeleteInput = () => {
     setPersonDate(
       getPersonData().map((person: IPerson) => {
@@ -58,7 +83,19 @@ export function TextArea(props: ITextAreaProps) {
         handleDeleteInput={handleDeleteInput}
         onEditLabel={(label) => props.onEditLabel(label)}
       />
-      <textarea className={style.textAreaInput} id={`textAreaId-${props.id}`} />{" "}
+      <textarea
+        ref={inputRef}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className={style.textInput}
+        id={`textAreaId-${props.id}`}
+        onBlur={() => props.onSave(value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            inputRef.current?.blur();
+          }
+        }}
+      />{" "}
     </>
   );
 }

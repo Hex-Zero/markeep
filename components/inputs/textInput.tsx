@@ -4,14 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
 import { IPerson } from "../../interfaces/IPerson";
 import Label from "../label";
+import style from "../../styles/input.module.scss";
 
-export interface ITextInputProps {
-  label: string;
-  value: string;
-  id: string;
-  onRefresh: () => void;
-  name: string;
-  onEditLabel: (label: string) => void;
+export interface ISaveTextInputProps {
+  personId: string;
+  inputId: string;
+  data: string;
 }
 
 export const handleAddTextInput = (label: string, personId: string) => {
@@ -32,7 +30,38 @@ export const handleAddTextInput = (label: string, personId: string) => {
   );
 };
 
+export const handleSaveTextInput = (props: ISaveTextInputProps) => {
+  setPersonDate(
+    getPersonData().map((person: IPerson) => {
+      if (person.id === props.personId) {
+        console.log("person Found");
+
+        person.additionalInputs.map((input: ICustomInput) => {
+          if (input.id === props.inputId) {
+            console.log("input Found");
+            console.log(props);
+
+            input.data = props.data;
+          }
+        });
+      }
+      return person;
+    })
+  );
+};
+export interface ITextInputProps {
+  label: string;
+  value: string;
+  id: string;
+  onRefresh: () => void;
+  name: string;
+  onEditLabel: (label: string) => void;
+  onSave: (payload: string) => void;
+}
+
 export function TextInput(props: ITextInputProps) {
+  const [value, setValue] = React.useState(props.value);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const handleDeleteInput = () => {
     setPersonDate(
       getPersonData().map((person: IPerson) => {
@@ -53,7 +82,21 @@ export function TextInput(props: ITextInputProps) {
         handleDeleteInput={handleDeleteInput}
         onEditLabel={(label) => props.onEditLabel(label)}
       />
-      <input type={inputType.textInput} id={`textInputId-${props.id}`} />
+      <input
+        className={style.textInput}
+        ref={inputRef}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        onBlur={() => props.onSave(value)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            inputRef?.current?.blur();
+          }
+        }}
+        type={inputType.textInput}
+        id={`textInputId-${props.id}`}
+      />
     </div>
   );
 }

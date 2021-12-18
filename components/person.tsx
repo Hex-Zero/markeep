@@ -4,10 +4,8 @@ import { getPersonData, setPersonDate } from "../hooks/usePersonData";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
-import { TextArea, handleAddTextArea } from "./inputs/textArea";
-import { UserTimesSolidSVG } from "../assets/userTimesSolidSVG";
-import { ICustomInput, inputType } from "../interfaces/IInputType";
-import { TextInput, handleAddTextInput } from "./inputs/textInput";
+import { handleAddTextArea } from "./inputs/textArea";
+import { handleAddTextInput } from "./inputs/textInput";
 import PersonMoreDropdown from "./dropdown/personMoreDropdown";
 import InputRenderHelper from "../helpers/inputRenderHelper";
 

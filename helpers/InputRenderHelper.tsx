@@ -1,6 +1,6 @@
 import * as React from "react";
-import { TextArea } from "../components/inputs/textArea";
-import { TextInput } from "../components/inputs/textInput";
+import { handleSaveTextArea, TextArea } from "../components/inputs/textArea";
+import { handleSaveTextInput, TextInput } from "../components/inputs/textInput";
 import { ICustomInput, inputType } from "../interfaces/IInputType";
 import { IPerson } from "../interfaces/IPerson";
 import { handleEditLabel } from "../components/label";
@@ -22,7 +22,16 @@ export default function InputRenderHelper(props: IInputRenderHelperProps) {
               label={input.label}
               value={input.data}
               onRefresh={props.onRefresh}
-              onEditLabel={(e) => handleEditLabel(props.person.id, input.id, e)}
+              onEditLabel={(label) =>
+                handleEditLabel(props.person.id, input.id, label)
+              }
+              onSave={(payload) =>
+                handleSaveTextArea({
+                  personId: props.person.id,
+                  inputId: input.id,
+                  data: payload,
+                })
+              }
             />
           );
         } else if (input.type === inputType.textInput) {
@@ -35,6 +44,13 @@ export default function InputRenderHelper(props: IInputRenderHelperProps) {
               value={input.data}
               onRefresh={props.onRefresh}
               onEditLabel={(e) => handleEditLabel(props.person.id, input.id, e)}
+              onSave={(data) =>
+                handleSaveTextInput({
+                  personId: props.person.id,
+                  inputId: input.id,
+                  data: data,
+                })
+              }
             />
           );
         }

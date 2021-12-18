@@ -14,6 +14,8 @@ const Home: NextPage = () => {
   const [showAddPersonModal, setShowAddPersonModal] = useState(false);
 
   const refresh = () => {
+    console.log(data);
+
     setData(getPersonData);
   };
 
