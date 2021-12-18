@@ -60,6 +60,12 @@ export default function Label(props: ILabelProps) {
             ref={labelInputRef}
             onChange={(e) => setLabel(e.target.value)}
             value={label}
+            onBlur={() => handleEditLabel(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                labelInputRef?.current?.blur();
+              }
+            }}
           />
         </label>
         {isEditing ? (
