@@ -34,13 +34,8 @@ export const handleSaveTextInput = (props: ISaveTextInputProps) => {
   setPersonDate(
     getPersonData().map((person: IPerson) => {
       if (person.id === props.personId) {
-        console.log("person Found");
-
         person.additionalInputs.map((input: ICustomInput) => {
           if (input.id === props.inputId) {
-            console.log("input Found");
-            console.log(props);
-
             input.data = props.data;
           }
         });
@@ -60,8 +55,9 @@ export interface ITextInputProps {
 }
 
 export function TextInput(props: ITextInputProps) {
-  const [value, setValue] = React.useState(props.value);
+  const [value, setValue] = React.useState(props.value || "");
   const inputRef = React.useRef<HTMLInputElement>(null);
+
   const handleDeleteInput = () => {
     setPersonDate(
       getPersonData().map((person: IPerson) => {
@@ -94,6 +90,7 @@ export function TextInput(props: ITextInputProps) {
             inputRef?.current?.blur();
           }
         }}
+        value={value}
         type={inputType.textInput}
         id={`textInputId-${props.id}`}
       />

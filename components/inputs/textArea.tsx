@@ -52,7 +52,7 @@ export const handleSaveTextArea = (props: ISaveTextAreaProps) => {
 
 export interface ITextAreaProps {
   label: string;
-  value?: string;
+  value: string;
   id: string;
   onRefresh: () => void;
   onEditLabel: (label: string) => void;

@@ -43,7 +43,9 @@ export default function InputRenderHelper(props: IInputRenderHelperProps) {
               label={input.label}
               value={input.data}
               onRefresh={props.onRefresh}
-              onEditLabel={(e) => handleEditLabel(props.person.id, input.id, e)}
+              onEditLabel={(label) =>
+                handleEditLabel(props.person.id, input.id, label)
+              }
               onSave={(data) =>
                 handleSaveTextInput({
                   personId: props.person.id,

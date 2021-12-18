@@ -7,6 +7,6 @@ export interface ICustomInput {
   name: string;
   label: string;
   type: inputType;
-  data: any;
+  data: string;
   id: string;
 }
