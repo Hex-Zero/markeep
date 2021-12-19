@@ -10,7 +10,7 @@ export interface IInputRenderHelperProps {
   onRefresh: () => void;
 }
 
-export default function InputRenderHelper(props: IInputRenderHelperProps) {
+export function InputRenderHelper(props: IInputRenderHelperProps) {
   return (
     <>
       {props.person.additionalInputs.map((input: ICustomInput) => {

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Person from "../components/person";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
@@ -39,43 +39,45 @@ const Home: NextPage = () => {
   };
 
   return (
-    <main>
-      <div
-        className={`${buttonStyles.openAddButton}`}
-        onClick={() => setShowAddPersonModal(true)}
-      ></div>
-      <Modal
-        isOpen={showAddPersonModal}
-        onClose={() => setShowAddPersonModal(false)}
-      >
-        <AddNewPerson
-          personsData={data}
-          handleAddNewPerson={handleAddPerson}
-          onOpenModal={showAddPersonModal}
-        ></AddNewPerson>
-      </Modal>
-      <SearchBar
-        onSearch={(e) => {
-          handleSearchData(searchInputRef?.value || "");
-        }}
-        getInputRef={(ref) => {
-          setSearchInputRef(ref.current);
-          ref?.current?.focus();
-        }}
-      ></SearchBar>
-      <div className={style.personsContainer}>
-        {data.map((person) => {
-          return (
-            <Person
-              person={person}
-              key={person.id}
-              id={person.id}
-              onRefresh={() => refresh()}
-            />
-          );
-        })}
-      </div>
-    </main>
+    <>
+      <main>
+        <div
+          className={`${buttonStyles.openAddButton}`}
+          onClick={() => setShowAddPersonModal(true)}
+        ></div>
+        <Modal
+          isOpen={showAddPersonModal}
+          onClose={() => setShowAddPersonModal(false)}
+        >
+          <AddNewPerson
+            personsData={data}
+            handleAddNewPerson={handleAddPerson}
+            onOpenModal={showAddPersonModal}
+          ></AddNewPerson>
+        </Modal>
+        <SearchBar
+          onSearch={(e) => {
+            handleSearchData(searchInputRef?.value || "");
+          }}
+          getInputRef={(ref) => {
+            setSearchInputRef(ref.current);
+            ref?.current?.focus();
+          }}
+        ></SearchBar>
+        <div className={style.personsContainer}>
+          {data.map((person) => {
+            return (
+              <Person
+                person={person}
+                key={person.id}
+                id={person.id}
+                onRefresh={() => refresh()}
+              />
+            );
+          })}
+        </div>
+      </main>
+    </>
   );
 };
 

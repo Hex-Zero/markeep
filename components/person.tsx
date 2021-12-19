@@ -7,7 +7,7 @@ import style from "../styles/person.module.scss";
 import { handleAddTextArea } from "./inputs/textArea";
 import { handleAddTextInput } from "./inputs/textInput";
 import PersonMoreDropdown from "./dropdown/personMoreDropdown";
-import InputRenderHelper from "../helpers/inputRenderHelper";
+import { InputRenderHelper } from "../helpers/InputRenderHelper";
 
 export interface IPersonProps {
   person: IPerson;
