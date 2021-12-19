@@ -8,19 +8,26 @@ import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
 import { getPersonData } from "../hooks/usePersonData";
 import style from "../styles/person.module.scss";
-import { SearchBar } from "../components/SearchBar";
+import { SearchBar, searchData } from "../components/SearchBar";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
+  const [queryData, setQueryData] = useState<IPerson[]>([]);
   const [showAddPersonModal, setShowAddPersonModal] = useState(false);
   const [searchInputRef, setSearchInputRef] = useState<HTMLInputElement | null>(
     null
   );
 
   const refresh = () => {
-    console.log(data);
-
     setData(getPersonData);
+    setQueryData(getPersonData);
+  };
+
+  const handleSearchData = (query: string) => {
+    console.log(query);
+
+    setData(searchData(queryData, query));
+    console.log(searchData(queryData, query));
   };
 
   useEffect(() => {
@@ -52,7 +59,7 @@ const Home: NextPage = () => {
       </Modal>
       <SearchBar
         onSearch={(e) => {
-          console.log(searchInputRef?.value);
+          handleSearchData(searchInputRef?.value || "");
         }}
         getInputRef={(ref) => {
           setSearchInputRef(ref.current);

@@ -17,7 +17,6 @@ export interface IPersonProps {
 
 export default function Person({ person, id, onRefresh }: IPersonProps) {
   const [modalOpen, setModalOpen] = useState(false);
-
   const handleDeletePerson = () => {
     try {
       setPersonDate(
