@@ -2,6 +2,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  position: relative;
   width: 100%;
   & > label {
     font-size: 1.2rem;
@@ -22,11 +23,19 @@
       }
     }
   }
-
   & > svg {
-    height: 1rem;
     width: 1rem;
-    fill: rgb(150, 150, 150);
+    height: 1rem;
+    overflow: visible;
+    color: rgb(126, 126, 126);
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 1rem;
+
+    &:hover {
+      color: rgb(0, 0, 0);
+    }
   }
 }
 

@@ -51,6 +51,9 @@ const Home: NextPage = () => {
         ></AddNewPerson>
       </Modal>
       <SearchBar
+        onSearch={(e) => {
+          console.log(searchInputRef?.value);
+        }}
         getInputRef={(ref) => {
           setSearchInputRef(ref.current);
           ref?.current?.focus();
