@@ -48,6 +48,7 @@ const Home: NextPage = () => {
         <Modal
           isOpen={showAddPersonModal}
           onClose={() => setShowAddPersonModal(false)}
+          maxWidth="350px"
         >
           <AddNewPerson
             personsData={data}

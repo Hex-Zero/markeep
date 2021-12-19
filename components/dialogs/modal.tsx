@@ -5,6 +5,7 @@ export interface IModalProps {
   children: React.ReactNode;
   isOpen: boolean;
   modalContainerClass?: string;
+  maxWidth?: string;
   onClose: () => void;
 }
 
@@ -12,6 +13,7 @@ export function Modal({
   children,
   isOpen,
   modalContainerClass,
+  maxWidth,
   onClose,
 }: IModalProps) {
   const handleModalClose = () => {
@@ -23,7 +25,10 @@ export function Modal({
       className={`${style.modalContainer} ${isOpen ? style.showModal : ""} `}
     >
       <div onClick={handleModalClose} className={style.modalOverlay}></div>
-      <div className={`${modalContainerClass} ${style.modalContent}`}>
+      <div
+        style={{ maxWidth: maxWidth }}
+        className={`${modalContainerClass} ${style.modalContent}`}
+      >
         {children}
       </div>
     </div>
