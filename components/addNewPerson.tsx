@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { addPersonData } from "../hooks/usePersonData";
 import { useEffect, useRef } from "react";
 import { inputType } from "../interfaces/IInputType";
+import style from "../styles/input.module.scss";
 
 export interface IAddNewPersonProps {
   personsData: IPerson[];
@@ -40,38 +41,50 @@ export default function AddNewPerson({
     },
   });
 
-  const nicknameInput = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    onOpenModal && nicknameInput.current?.focus();
+    onOpenModal && nameInputRef.current?.focus();
   }, [onOpenModal]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="nickname">Nickname</label>
+    <form className={style.addPersonContainer} onSubmit={handleSubmit}>
+      <label className={style.label} htmlFor="firstName">
+        First Name
+      </label>
       <input
-        ref={nicknameInput}
-        type="text"
-        name="nickname"
-        onChange={handleChange}
-        value={values.nickname}
-      />
-      <label htmlFor="firstName">First Name</label>
-      <input
+        className={style.textInput}
+        ref={nameInputRef}
         type="text"
         name="firstName"
         onChange={handleChange}
         value={values.firstName}
       />
-      <label htmlFor="lastName">Last Name</label>
+      <label className={style.label} htmlFor="lastName">
+        Last Name
+      </label>
       <input
+        className={style.textInput}
         type="text"
         name="lastName"
         onChange={handleChange}
         value={values.lastName}
       />
 
-      <button type="submit">Add Person</button>
+      <label className={style.label} htmlFor="nickname">
+        Nickname
+      </label>
+      <input
+        className={style.textInput}
+        type="text"
+        name="nickname"
+        onChange={handleChange}
+        value={values.nickname}
+      />
+
+      <button className={style.addPersonButton} type="submit">
+        Add Person
+      </button>
     </form>
   );
 }
