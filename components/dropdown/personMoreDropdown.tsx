@@ -10,7 +10,6 @@ export default function PersonMoreDropdown(props: IPersonMoreDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleDropdownOpen = () => {
-    console.log("dropdown open");
     isOpen ? setIsOpen(false) : setIsOpen(true);
   };
 

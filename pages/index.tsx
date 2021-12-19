@@ -24,10 +24,7 @@ const Home: NextPage = () => {
   };
 
   const handleSearchData = (query: string) => {
-    console.log(query);
-
     setData(searchData(queryData, query));
-    console.log(searchData(queryData, query));
   };
 
   useEffect(() => {

@@ -6,23 +6,27 @@ import { IPerson } from "../../interfaces/IPerson";
 import Label from "../label";
 import style from "../../styles/input.module.scss";
 
+export interface IAddNewTextAreaProps {
+  label?: string;
+  personId: string;
+}
 export interface ISaveTextInputProps {
   personId: string;
   inputId: string;
   data: string;
 }
 
-export const handleAddTextInput = (label: string, personId: string) => {
+export const handleAddTextInput = (props: IAddNewTextAreaProps) => {
   const newInputs: ICustomInput = {
     name: "input",
-    label: label || "New Input",
+    label: props.label || "New Input",
     type: inputType.textInput,
     data: "",
     id: uuidv4(),
   };
   setPersonDate(
     getPersonData().map((person: IPerson) => {
-      if (person.id === personId) {
+      if (person.id === props.personId) {
         person.additionalInputs.push(newInputs);
       }
       return person;

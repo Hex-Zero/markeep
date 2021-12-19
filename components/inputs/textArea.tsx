@@ -7,8 +7,8 @@ import { ICustomInput, inputType } from "../../interfaces/IInputType";
 import Label from "../label";
 
 export interface IAddNewTextAreaProps {
-  label: string;
-  id: string;
+  label?: string;
+  personId: string;
 }
 
 export interface ISaveTextAreaProps {
@@ -20,14 +20,14 @@ export interface ISaveTextAreaProps {
 export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
   const newInputs: ICustomInput = {
     name: "NoteArea",
-    label: "New Note",
+    label: props.label || "New Note",
     type: inputType.textArea,
     data: "",
     id: uuidv4(),
   };
   setPersonDate(
     getPersonData().map((person: IPerson) => {
-      if (person.id === props.id) {
+      if (person.id === props.personId) {
         person.additionalInputs.push(newInputs);
       }
       return person;

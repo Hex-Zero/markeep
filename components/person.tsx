@@ -30,7 +30,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
 
   const AddTextArea = () => {
     try {
-      handleAddTextArea({ label: "Test", id: person.id });
+      handleAddTextArea({ personId: id });
       onRefresh();
     } catch (e) {
       console.log(e);
@@ -39,7 +39,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
 
   const AddTextInput = () => {
     try {
-      handleAddTextInput("Test", person.id);
+      handleAddTextInput({ personId: id });
       onRefresh();
     } catch (e) {
       console.log(e);
