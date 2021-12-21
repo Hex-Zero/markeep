@@ -18,6 +18,8 @@ export interface IPersonProps {
 
 export default function Person({ person, id, onRefresh }: IPersonProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [personImage, setPersonImage] = useState("");
+  const personImageRef = React.createRef<HTMLInputElement>();
   const handleDeletePerson = () => {
     try {
       setPersonDate(
@@ -62,6 +64,17 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
         onClose={() => setModalOpen(false)}
       >
         <PersonPicture></PersonPicture>
+        <input
+          ref={personImageRef}
+          type="file"
+          value={personImage}
+          onChange={(e) => {
+            setPersonImage(e.target.value);
+            console.log(e.target.value);
+            console.log(personImageRef.current);
+          }}
+          accept="image/*"
+        />
         <div className={style.personModalContent}>
           <section>
             <h1>{person.nickname}</h1>
