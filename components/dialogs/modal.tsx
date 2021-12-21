@@ -24,7 +24,7 @@ export function Modal({
     <div
       className={`${style.modalContainer} ${isOpen ? style.showModal : ""} `}
     >
-      a<div onClick={handleModalClose} className={style.modalOverlay}></div>
+      <div onClick={handleModalClose} className={style.modalOverlay}></div>
       <div
         style={{ maxWidth: maxWidth }}
         className={`${modalContainerClass} ${style.modalContent}`}
