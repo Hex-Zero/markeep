@@ -9,6 +9,7 @@ import { handleAddTextInput } from "./inputs/textInput";
 import PersonMoreDropdown from "./dropdown/personMoreDropdown";
 import { InputRenderHelper } from "../helpers/InputRenderHelper";
 import { PersonPicture } from "./personPicture";
+import { blob } from "stream/consumers";
 
 export interface IPersonProps {
   person: IPerson;
@@ -18,8 +19,6 @@ export interface IPersonProps {
 
 export default function Person({ person, id, onRefresh }: IPersonProps) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [personImage, setPersonImage] = useState("");
-  const personImageRef = React.createRef<HTMLInputElement>();
   const handleDeletePerson = () => {
     try {
       setPersonDate(
@@ -64,17 +63,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
         onClose={() => setModalOpen(false)}
       >
         <PersonPicture></PersonPicture>
-        <input
-          ref={personImageRef}
-          type="file"
-          value={personImage}
-          onChange={(e) => {
-            setPersonImage(e.target.value);
-            console.log(e.target.value);
-            console.log(personImageRef.current);
-          }}
-          accept="image/*"
-        />
+
         <div className={style.personModalContent}>
           <section>
             <h1>{person.nickname}</h1>
