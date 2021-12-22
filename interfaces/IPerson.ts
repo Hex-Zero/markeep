@@ -5,5 +5,6 @@ export interface IPerson {
   nickname: string;
   firstName: string;
   lastName: string;
+  imageSrc?: string;
   additionalInputs: ICustomInput[];
 }

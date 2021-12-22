@@ -9,7 +9,6 @@ import { handleAddTextInput } from "./inputs/textInput";
 import PersonMoreDropdown from "./dropdown/personMoreDropdown";
 import { InputRenderHelper } from "../helpers/InputRenderHelper";
 import { PersonPicture } from "./personPicture";
-import { blob } from "stream/consumers";
 
 export interface IPersonProps {
   person: IPerson;
@@ -51,7 +50,11 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
   return (
     <div>
       <div className={style.personCard} onClick={() => setModalOpen(true)}>
-        <PersonPicture></PersonPicture>
+        <PersonPicture
+          allowImageUpload={false}
+          person={person}
+          onRefresh={() => onRefresh()}
+        ></PersonPicture>
         <h1>{person.nickname || person.firstName}</h1>
         <p>
           {person.firstName} {person.lastName}
@@ -62,7 +65,11 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
       >
-        <PersonPicture></PersonPicture>
+        <PersonPicture
+          allowImageUpload={true}
+          person={person}
+          onRefresh={() => onRefresh()}
+        ></PersonPicture>
 
         <div className={style.personModalContent}>
           <section>
