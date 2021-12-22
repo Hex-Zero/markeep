@@ -1,15 +1,10 @@
 import * as React from "react";
 
-export interface IUserPlusSVGProps {
-  onClick: () => void;
-}
+export interface IUserPlusSVGProps {}
 
 export function UserPlusSVG(props: IUserPlusSVGProps) {
   return (
     <svg
-      onClick={() => {
-        props.onClick();
-      }}
       aria-hidden="true"
       focusable="false"
       data-prefix="far"

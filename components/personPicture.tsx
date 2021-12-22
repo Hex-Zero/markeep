@@ -29,6 +29,8 @@ export function PersonPicture(props: IPersonPictureProps) {
           getPersonData().map((person: IPerson) => {
             if (person.id === props.person.id) {
               person.imageSrc = e.target?.result?.toString();
+
+              setPersonImage(e.target?.result?.toString());
             }
             return person;
           })
@@ -44,29 +46,20 @@ export function PersonPicture(props: IPersonPictureProps) {
       <div className={style.personPictureContainer}>
         {personImage ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={personImage}
-            alt="person"
-            onClick={() =>
-              props.allowImageUpload && personImageRef?.current?.click()
-            }
-          ></img>
+          <img src={personImage} alt="person"></img>
         ) : (
-          <UserPlusSVG
-            onClick={() =>
-              props.allowImageUpload && personImageRef?.current?.click()
-            }
-          ></UserPlusSVG>
+          <UserPlusSVG></UserPlusSVG>
         )}
-
-        <input
-          ref={personImageRef}
-          type="file"
-          onChange={() => {
-            handleImageUpload();
-          }}
-          accept="image/*"
-        />
+        {props.allowImageUpload && (
+          <input
+            ref={personImageRef}
+            type="file"
+            onChange={() => {
+              handleImageUpload();
+            }}
+            accept="image/*"
+          />
+        )}
       </div>
     </>
   );

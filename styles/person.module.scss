@@ -56,6 +56,18 @@
     color: #fff;
   }
   & > input {
-    display: none;
+    position: absolute;
+    top: 0;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    opacity: 0;
+    border-radius: 50%;
+  }
+  & > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 }

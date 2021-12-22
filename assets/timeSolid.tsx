@@ -7,7 +7,6 @@ export interface ITimesSolidProps {
 export function TimesSolid(props: ITimesSolidProps) {
   return (
     <svg
-      onClick={(e) => props.onClick(e)}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
