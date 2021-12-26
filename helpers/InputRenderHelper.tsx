@@ -4,6 +4,7 @@ import { handleSaveTextInput, TextInput } from "../components/inputs/textInput";
 import { ICustomInput, inputType } from "../interfaces/IInputType";
 import { IPerson } from "../interfaces/IPerson";
 import { handleEditLabel } from "../components/label";
+import NameInput from "../components/inputs/nameInput";
 
 export interface IInputRenderHelperProps {
   person: IPerson;
@@ -15,7 +16,26 @@ export function InputRenderHelper(props: IInputRenderHelperProps) {
     <>
       {props.person.additionalInputs.map((input: ICustomInput) => {
         if (input.name === "Name") {
-          return <div>hell</div>;
+          return (
+            <NameInput
+              id={input.id}
+              name={input.name}
+              key={input.id}
+              label={input.label}
+              value={input.data}
+              onRefresh={props.onRefresh}
+              onEditLabel={(label) =>
+                handleEditLabel(props.person.id, input.id, label)
+              }
+              onSave={(data) =>
+                handleSaveTextInput({
+                  personId: props.person.id,
+                  inputId: input.id,
+                  data: data,
+                })
+              }
+            />
+          );
         }
         if (input.type === inputType.textArea) {
           return (
