@@ -55,10 +55,8 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
           person={person}
           onRefresh={() => onRefresh()}
         ></PersonPicture>
-        <h1>{person.nickname || person.firstName}</h1>
-        <p>
-          {person.firstName} {person.lastName}
-        </p>
+        <h1>{person.additionalInputs[0].label}</h1>
+        <p>{person.additionalInputs[0].data}</p>
       </div>
       <Modal
         modalContainerClass={style.personModal}
