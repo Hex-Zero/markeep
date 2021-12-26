@@ -29,11 +29,11 @@ export default function AddNewPerson({
     onSubmit: (values: IPerson) => {
       values.id = uuidv4();
       values.additionalInputs.push({
-        name: "NoteArea",
-        label: "New Note",
+        name: "Name",
+        label: values.nickname ? values.nickname : values.firstName,
         id: uuidv4(),
-        type: inputType.textArea,
-        data: "",
+        type: inputType.textInput,
+        data: `${values.firstName} ${values.lastName}`,
       });
       addPersonData(personsData, values);
       handleAddNewPerson();

@@ -14,6 +14,9 @@ export function InputRenderHelper(props: IInputRenderHelperProps) {
   return (
     <>
       {props.person.additionalInputs.map((input: ICustomInput) => {
+        if (input.name === "Name") {
+          return <div>hell</div>;
+        }
         if (input.type === inputType.textArea) {
           return (
             <TextArea
