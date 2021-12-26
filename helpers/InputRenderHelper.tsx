@@ -4,7 +4,6 @@ import { handleSaveTextInput, TextInput } from "../components/inputs/textInput";
 import { ICustomInput, inputType } from "../interfaces/IInputType";
 import { IPerson } from "../interfaces/IPerson";
 import { handleEditLabel } from "../components/label";
-import NameInput from "../components/inputs/nameInput";
 
 export interface IInputRenderHelperProps {
   person: IPerson;
@@ -17,7 +16,7 @@ export function InputRenderHelper(props: IInputRenderHelperProps) {
       {props.person.additionalInputs.map((input: ICustomInput) => {
         if (input.name === "Name") {
           return (
-            <NameInput
+            <TextInput
               id={input.id}
               name={input.name}
               key={input.id}

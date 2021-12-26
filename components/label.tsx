@@ -27,6 +27,7 @@ export const handleEditLabel = (
 export interface ILabelProps {
   label: string;
   id: string;
+  dataName: string;
   handleDeleteInput: () => void;
   onEditLabel: (label: string) => void;
 }
@@ -55,7 +56,7 @@ export default function Label(props: ILabelProps) {
   };
   return (
     <>
-      <div className={style.labelContainer}>
+      <div data-name={props.dataName} className={style.labelContainer}>
         <label htmlFor={`textInputId-${props.id}`}>
           <input
             ref={labelInputRef}

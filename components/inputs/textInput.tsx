@@ -79,10 +79,13 @@ export function TextInput(props: ITextInputProps) {
       <Label
         label={props.label}
         id={props.id}
+        dataName={props.name}
         handleDeleteInput={handleDeleteInput}
         onEditLabel={(label) => props.onEditLabel(label)}
       />
       <input
+        data-name={props.name}
+        name={props.name}
         className={style.textInput}
         ref={inputRef}
         onChange={(e) => {

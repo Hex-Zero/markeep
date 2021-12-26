@@ -1,4 +1,10 @@
 .labelContainer {
+  &[data-name="Name"] {
+    padding: 0 5.8rem;
+    & > svg {
+      display: none !important;
+    }
+  }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -40,6 +46,11 @@
 }
 
 .textInput {
+  &[data-name="Name"] {
+    padding: 0.4rem 6rem 0 6rem;
+    background-color: transparent !important;
+    border: none !important;
+  }
   width: 100%;
   height: 100%;
   border: 1px solid rgb(230, 246, 255);

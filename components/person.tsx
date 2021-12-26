@@ -72,12 +72,6 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
         ></PersonPicture>
 
         <div className={style.personModalContent}>
-          <section>
-            <h1>{person.nickname}</h1>
-            <p>
-              {person.firstName} {person.lastName}
-            </p>
-          </section>
           <PersonMoreDropdown>
             <label>Add</label>
             <ul>
