@@ -18,26 +18,32 @@ export default function AddNewPerson({
   handleAddNewPerson,
   onOpenModal,
 }: IAddNewPersonProps) {
+  const [name, setName] = React.useState("");
+  const [nickName, setNickName] = React.useState("");
   const { handleSubmit, handleChange, values, resetForm } = useFormik({
     initialValues: {
       id: "",
-      nickname: "",
-      firstName: "",
-      lastName: "",
-      additionalInputs: [],
+      additionalInputs: [
+        {
+          name: "Name",
+          id: "",
+          label: "",
+          type: inputType.textInput,
+          data: "",
+        },
+      ],
     },
     onSubmit: (values: IPerson) => {
+      values.additionalInputs[0].data = name;
+      values.additionalInputs[0].label = nickName
+        ? nickName
+        : name?.replace(/ .*/, "");
       values.id = uuidv4();
-      values.additionalInputs.push({
-        name: "Name",
-        label: values.nickname ? values.nickname : values.firstName,
-        id: uuidv4(),
-        type: inputType.textInput,
-        data: `${values.firstName} ${values.lastName}`,
-      });
       addPersonData(personsData, values);
       handleAddNewPerson();
       resetForm();
+      setName("");
+      setNickName("");
     },
   });
 
@@ -49,26 +55,16 @@ export default function AddNewPerson({
 
   return (
     <form className={style.addPersonContainer} onSubmit={handleSubmit}>
-      <label className={style.label} htmlFor="firstName">
-        First Name
+      <label className={style.label} htmlFor="name">
+        Name
       </label>
       <input
         className={style.textInput}
         ref={nameInputRef}
         type="text"
-        name="firstName"
-        onChange={handleChange}
-        value={values.firstName}
-      />
-      <label className={style.label} htmlFor="lastName">
-        Last Name
-      </label>
-      <input
-        className={style.textInput}
-        type="text"
-        name="lastName"
-        onChange={handleChange}
-        value={values.lastName}
+        name="name"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
       />
 
       <label className={style.label} htmlFor="nickname">
@@ -78,8 +74,8 @@ export default function AddNewPerson({
         className={style.textInput}
         type="text"
         name="nickname"
-        onChange={handleChange}
-        value={values.nickname}
+        onChange={(e) => setNickName(e.target.value)}
+        value={nickName}
       />
 
       <button className={style.addPersonButton} type="submit">
