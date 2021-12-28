@@ -56,7 +56,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
           onRefresh={() => onRefresh()}
         ></PersonPicture>
         <h1>{person.additionalInputs[0].label}</h1>
-        <p>{person.additionalInputs[0].data}</p>p
+        <p>{person.additionalInputs[0].data}</p>
       </div>
       <Modal
         modalContainerClass={style.personModal}
