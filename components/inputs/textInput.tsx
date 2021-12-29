@@ -75,7 +75,12 @@ export function TextInput(props: ITextInputProps) {
   };
 
   return (
-    <>
+    <div
+      className={[
+        props.name === "Name" ? style.nameInput : "",
+        style.inputContainer,
+      ].join(" ")}
+    >
       <Label
         label={props.label}
         id={props.id}
@@ -101,6 +106,6 @@ export function TextInput(props: ITextInputProps) {
         type={inputType.textInput}
         id={`textInputId-${props.id}`}
       />
-    </>
+    </div>
   );
 }

@@ -1,6 +1,15 @@
+.inputContainer {
+  width: 100%;
+}
+
+.nameInput {
+  margin-left: 6rem;
+  width: calc(100% - 8rem);
+}
+
 .labelContainer {
   &[data-name="Name"] {
-    padding: 0 5.8rem;
+    margin-left: 0.3rem;
     & > svg {
       display: none !important;
     }
@@ -47,7 +56,6 @@
 
 .textInput {
   &[data-name="Name"] {
-    padding: 0.4rem 6rem 0 6rem;
     background-color: transparent !important;
     border: none !important;
   }
