@@ -69,8 +69,6 @@ export default function Label(props: ILabelProps) {
               }
             }}
           />
-          {/* 
-          {isEditing ? <div>SAVE</div> : <div>EDIT</div>} */}
         </label>
 
         <TimesSolid onClick={() => props.handleDeleteInput()}></TimesSolid>
