@@ -11,6 +11,7 @@ import style from "../styles/person.module.scss";
 import { SearchBar, searchData } from "../components/SearchBar";
 import MoreDropdown from "../components/dropdown/moreDropdown";
 import { exportToJsonFile } from "../hooks/manageDataFlow";
+import { ImportDataHelper } from "../helpers/ImportDataHelper";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
@@ -19,7 +20,6 @@ const Home: NextPage = () => {
   const [searchInputRef, setSearchInputRef] = useState<HTMLInputElement | null>(
     null
   );
-  const inputFileRef = React.createRef<HTMLInputElement>();
 
   const refresh = () => {
     setData(getPersonData);
@@ -47,10 +47,6 @@ const Home: NextPage = () => {
 
   const handleImport = () => {};
 
-  useEffect(() => {
-    console.log(inputFileRef.current);
-  }, [inputFileRef]);
-
   return (
     <>
       <main>
@@ -58,14 +54,15 @@ const Home: NextPage = () => {
           className={`${buttonStyles.openAddButton}`}
           onClick={() => setShowAddPersonModal(true)}
         ></div>
+        <ImportDataHelper></ImportDataHelper>
         <MoreDropdown>
           <label>Settings</label>
           <ul>
             <li onClick={handleExport}>Export</li>
             <li onClick={handleImport}>Import</li>
           </ul>
-          <input type="file" ref={inputFileRef} />
         </MoreDropdown>
+
         <Modal
           isOpen={showAddPersonModal}
           onClose={() => setShowAddPersonModal(false)}
