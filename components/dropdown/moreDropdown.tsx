@@ -2,11 +2,11 @@ import * as React from "react";
 import { EllipsisVSolid } from "../../assets/ellipsisVSolid";
 import style from "../../styles/dropdown.module.scss";
 
-export interface IPersonMoreDropdownProps {
+export interface IMoreDropdownProps {
   children: React.ReactNode;
 }
 
-export default function PersonMoreDropdown(props: IPersonMoreDropdownProps) {
+export default function MoreDropdown(props: IMoreDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleDropdownOpen = () => {

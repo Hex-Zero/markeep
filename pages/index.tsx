@@ -45,6 +45,7 @@ const Home: NextPage = () => {
           className={`${buttonStyles.openAddButton}`}
           onClick={() => setShowAddPersonModal(true)}
         ></div>
+        <div>Settings</div>
         <Modal
           isOpen={showAddPersonModal}
           onClose={() => setShowAddPersonModal(false)}

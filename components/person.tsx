@@ -6,7 +6,7 @@ import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
 import { handleAddTextArea } from "./inputs/textArea";
 import { handleAddTextInput } from "./inputs/textInput";
-import PersonMoreDropdown from "./dropdown/personMoreDropdown";
+import MoreDropdown from "./dropdown/moreDropdown";
 import { InputRenderHelper } from "../helpers/InputRenderHelper";
 import { PersonPicture } from "./personPicture";
 
@@ -70,7 +70,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
         ></PersonPicture>
 
         <div className={style.personModalContent}>
-          <PersonMoreDropdown>
+          <MoreDropdown>
             <label>Add</label>
             <ul>
               <li onClick={AddTextInput}>Text Field</li>
@@ -81,7 +81,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
             <ul>
               <li onClick={handleDeletePerson}>Delete</li>
             </ul>
-          </PersonMoreDropdown>
+          </MoreDropdown>
           <InputRenderHelper person={person} onRefresh={onRefresh} />
         </div>
       </Modal>
