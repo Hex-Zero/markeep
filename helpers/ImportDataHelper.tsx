@@ -1,7 +1,12 @@
 import * as React from "react";
 import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import style from "../styles/input.module.scss";
 
-export interface IImportDataHelperProps {}
+export interface IImportDataHelperProps {
+  onRefresh: () => void;
+  getImportInputRef: (ref: HTMLInputElement) => void;
+  inputClicked?: boolean;
+}
 
 export function ImportDataHelper(props: IImportDataHelperProps) {
   const inputFileRef = React.createRef<HTMLInputElement>();
@@ -11,8 +16,6 @@ export function ImportDataHelper(props: IImportDataHelperProps) {
     const currentData = getPersonData();
 
     if (file) {
-      console.log("start reading file");
-
       try {
         const reader = new FileReader();
         reader.readAsText(file);
@@ -21,6 +24,9 @@ export function ImportDataHelper(props: IImportDataHelperProps) {
           setPersonsData([...JSON.parse(e.target?.result as string)]);
         };
         console.log("import successful - person data updated");
+        setTimeout(() => {
+          props.onRefresh();
+        }, 10);
       } catch (e) {
         console.log(e);
         console.log("import failed - changes reverted");
@@ -30,13 +36,20 @@ export function ImportDataHelper(props: IImportDataHelperProps) {
   };
 
   React.useEffect(() => {
-    readFile(inputFileRef?.current?.files?.[0]);
-  }, [inputFileRef]);
+    props.getImportInputRef(inputFileRef.current!);
+  }, []);
+
+  React.useEffect(() => {
+    if (importDataInputValue) {
+      readFile(inputFileRef?.current?.files?.[0]);
+    }
+  }, [importDataInputValue]);
 
   return (
     <>
       <input
         type="file"
+        className={style.importDataInput}
         ref={inputFileRef}
         value={importDataInputValue}
         onChange={(e) => {

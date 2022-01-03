@@ -6,7 +6,7 @@ import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
-import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import { getPersonData } from "../hooks/usePersonData";
 import style from "../styles/person.module.scss";
 import { SearchBar, searchData } from "../components/SearchBar";
 import MoreDropdown from "../components/dropdown/moreDropdown";
@@ -20,10 +20,17 @@ const Home: NextPage = () => {
   const [searchInputRef, setSearchInputRef] = useState<HTMLInputElement | null>(
     null
   );
+  const [importInputRef, setImportInputRef] = useState<HTMLInputElement | null>(
+    null
+  );
 
   const refresh = () => {
-    setData(getPersonData);
-    setQueryData(getPersonData);
+    console.log("refresh");
+    const newData = getPersonData();
+
+    setData(newData);
+    setQueryData(newData);
+    console.log(newData);
   };
 
   const handleSearchData = (query: string) => {
@@ -45,7 +52,9 @@ const Home: NextPage = () => {
     exportToJsonFile(data);
   };
 
-  const handleImport = () => {};
+  const handleImport = () => {
+    importInputRef?.click();
+  };
 
   return (
     <>
@@ -54,7 +63,10 @@ const Home: NextPage = () => {
           className={`${buttonStyles.openAddButton}`}
           onClick={() => setShowAddPersonModal(true)}
         ></div>
-        <ImportDataHelper></ImportDataHelper>
+        <ImportDataHelper
+          onRefresh={() => refresh()}
+          getImportInputRef={(ref: HTMLInputElement) => setImportInputRef(ref)}
+        ></ImportDataHelper>
         <MoreDropdown>
           <label>Settings</label>
           <ul>
