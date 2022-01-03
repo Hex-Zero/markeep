@@ -26,7 +26,7 @@ export function ImportDataHelper(props: IImportDataHelperProps) {
         console.log("import successful - person data updated");
         setTimeout(() => {
           props.onRefresh();
-        }, 10);
+        }, 100);
       } catch (e) {
         console.log(e);
         console.log("import failed - changes reverted");
