@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IPerson } from "../../interfaces/IPerson";
-import { getPersonData, setPersonDate } from "../../hooks/usePersonData";
+import { getPersonData, setPersonsData } from "../../hooks/usePersonData";
 import { v4 as uuidv4 } from "uuid";
 import style from "../../styles/input.module.scss";
 import { ICustomInput, inputType } from "../../interfaces/IInputType";
@@ -25,7 +25,7 @@ export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
     data: "",
     id: uuidv4(),
   };
-  setPersonDate(
+  setPersonsData(
     getPersonData().map((person: IPerson) => {
       if (person.id === props.personId) {
         person.additionalInputs.push(newInputs);
@@ -36,7 +36,7 @@ export const handleAddTextArea = (props: IAddNewTextAreaProps) => {
 };
 
 export const handleSaveTextArea = (props: ISaveTextAreaProps) => {
-  setPersonDate(
+  setPersonsData(
     getPersonData().map((person: IPerson) => {
       if (person.id === props.personId) {
         person.additionalInputs.map((input: ICustomInput) => {
@@ -64,7 +64,7 @@ export function TextArea(props: ITextAreaProps) {
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
   const handleDeleteInput = () => {
-    setPersonDate(
+    setPersonsData(
       getPersonData().map((person: IPerson) => {
         person.additionalInputs = person.additionalInputs.filter(
           (input: ICustomInput) => input.id !== props.id

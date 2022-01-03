@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TimesSolid } from "../assets/timeSolid";
-import { getPersonData, setPersonDate } from "../hooks/usePersonData";
+import { getPersonData, setPersonsData } from "../hooks/usePersonData";
 import { ICustomInput } from "../interfaces/IInputType";
 import { IPerson } from "../interfaces/IPerson";
 import style from "../styles/input.module.scss";
@@ -10,7 +10,7 @@ export const handleEditLabel = (
   inputId: string,
   label: string
 ) => {
-  setPersonDate(
+  setPersonsData(
     getPersonData().map((person: IPerson) => {
       if (person.id === personId) {
         person.additionalInputs.map((input: ICustomInput) => {

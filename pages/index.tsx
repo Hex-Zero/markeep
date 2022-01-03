@@ -6,7 +6,7 @@ import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
-import { getPersonData } from "../hooks/usePersonData";
+import { getPersonData, setPersonsData } from "../hooks/usePersonData";
 import style from "../styles/person.module.scss";
 import { SearchBar, searchData } from "../components/SearchBar";
 import MoreDropdown from "../components/dropdown/moreDropdown";
