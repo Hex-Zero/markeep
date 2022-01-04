@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ICustomInput, inputType } from "../../interfaces/IInputType";
 import { v4 as uuidv4 } from "uuid";
-import { getPersonData, setPersonsData } from "../../hooks/usePersonData";
+import { getPersonsData, setPersonsData } from "../../hooks/usePersonData";
 import { IPerson } from "../../interfaces/IPerson";
 import Label from "../label";
 import style from "../../styles/input.module.scss";
@@ -25,7 +25,7 @@ export const handleAddTextInput = (props: IAddNewTextAreaProps) => {
     id: uuidv4(),
   };
   setPersonsData(
-    getPersonData().map((person: IPerson) => {
+    getPersonsData().map((person: IPerson) => {
       if (person.id === props.personId) {
         person.additionalInputs.push(newInputs);
       }
@@ -36,7 +36,7 @@ export const handleAddTextInput = (props: IAddNewTextAreaProps) => {
 
 export const handleSaveTextInput = (props: ISaveTextInputProps) => {
   setPersonsData(
-    getPersonData().map((person: IPerson) => {
+    getPersonsData().map((person: IPerson) => {
       if (person.id === props.personId) {
         person.additionalInputs.map((input: ICustomInput) => {
           if (input.id === props.inputId) {
@@ -64,7 +64,7 @@ export function TextInput(props: ITextInputProps) {
 
   const handleDeleteInput = () => {
     setPersonsData(
-      getPersonData().map((person: IPerson) => {
+      getPersonsData().map((person: IPerson) => {
         person.additionalInputs = person.additionalInputs.filter(
           (input: ICustomInput) => input.id !== props.id
         );

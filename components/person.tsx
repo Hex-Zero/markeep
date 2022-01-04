@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as React from "react";
-import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import { getPersonsData, setPersonsData } from "../hooks/usePersonData";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "./dialogs/modal";
 import style from "../styles/person.module.scss";
@@ -21,7 +21,7 @@ export default function Person({ person, id, onRefresh }: IPersonProps) {
   const handleDeletePerson = () => {
     try {
       setPersonsData(
-        getPersonData().filter((person: IPerson) => person.id !== id)
+        getPersonsData().filter((person: IPerson) => person.id !== id)
       );
       onRefresh();
     } catch (e) {

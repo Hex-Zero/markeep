@@ -1,5 +1,5 @@
 import * as React from "react";
-import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import { getPersonsData, setPersonsData } from "../hooks/usePersonData";
 import style from "../styles/input.module.scss";
 
 export interface IImportDataHelperProps {
@@ -13,7 +13,7 @@ export function ImportDataHelper(props: IImportDataHelperProps) {
   const [importDataInputValue, setImportDataInputValue] = React.useState("");
 
   const readFile = (file?: File | null) => {
-    const currentData = getPersonData();
+    const currentData = getPersonsData();
 
     if (file) {
       try {

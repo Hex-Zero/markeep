@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IUserPlusSVGProps, UserPlusSVG } from "../assets/userPlus";
-import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import { getPersonsData, setPersonsData } from "../hooks/usePersonData";
 import { IPerson } from "../interfaces/IPerson";
 import style from "../styles/person.module.scss";
 
@@ -26,7 +26,7 @@ export function PersonPicture(props: IPersonPictureProps) {
       fileReader.onload = function (e) {
         // browser completed reading file - display it
         setPersonsData(
-          getPersonData().map((person: IPerson) => {
+          getPersonsData().map((person: IPerson) => {
             if (person.id === props.person.id) {
               person.imageSrc = e.target?.result?.toString();
 

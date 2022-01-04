@@ -6,13 +6,12 @@ import AddNewPerson from "../components/addNewPerson";
 import { IPerson } from "../interfaces/IPerson";
 import { Modal } from "../components/dialogs/modal";
 import buttonStyles from "../styles/button.module.scss";
-import { getPersonData, setPersonsData } from "../hooks/usePersonData";
+import { getPersonsData, setPersonsData } from "../hooks/usePersonData";
 import style from "../styles/person.module.scss";
 import { SearchBar, searchData } from "../components/SearchBar";
 import MoreDropdown from "../components/dropdown/moreDropdown";
 import { exportToJsonFile } from "../hooks/manageDataFlow";
 import { ImportDataHelper } from "../helpers/ImportDataHelper";
-import { getSeedData } from "../helpers/seedData";
 
 const Home: NextPage = () => {
   const [data, setData] = useState<IPerson[]>([]);
@@ -26,7 +25,7 @@ const Home: NextPage = () => {
   );
 
   const refresh = () => {
-    const newData = getPersonData();
+    const newData = getPersonsData();
     setData(newData);
     setQueryData(newData);
   };
