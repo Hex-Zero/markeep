@@ -28,7 +28,7 @@ const Home: NextPage = () => {
     const newData = getPersonsData();
     setData(newData);
     setQueryData(newData);
-
+    // test
     console.log(process.env.DB_HOST);
   };
 
