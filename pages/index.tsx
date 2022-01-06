@@ -60,6 +60,7 @@ const Home: NextPage = () => {
 
   return (
     <main>
+      {status === "loading" && <div>Loading...</div>}
       {!data ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (
