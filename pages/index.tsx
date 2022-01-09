@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     null
   );
 
-  const findGreatestCommonDivisor = (a: number, b: number): any => {
+  const findGreatestCommonDivisor = (a: number, b: number): number => {
     if (b === 0) {
       return a;
     }
