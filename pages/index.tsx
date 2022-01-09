@@ -13,6 +13,7 @@ import MoreDropdown from "../components/dropdown/moreDropdown";
 import { exportToJsonFile } from "../hooks/manageDataFlow";
 import { ImportDataHelper } from "../helpers/ImportDataHelper";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { AnyRecord } from "dns";
 
 const Home: NextPage = () => {
   //ts-ignore
@@ -28,11 +29,12 @@ const Home: NextPage = () => {
     null
   );
 
-  useEffect(() => {
-    if (!personsData.length && localStorage != null) {
-      refresh();
+  const findGreatestCommonDivisor = (a: number, b: number): any => {
+    if (b === 0) {
+      return a;
     }
-  }, [setData, personsData.length]);
+    return findGreatestCommonDivisor(b, a % b);
+  };
 
   const refresh = () => {
     const newData = getPersonsData();
@@ -57,6 +59,13 @@ const Home: NextPage = () => {
   const handleImport = () => {
     importInputRef?.click();
   };
+
+  useEffect(() => {
+    if (!personsData.length && localStorage != null) {
+      refresh();
+    }
+    console.log(findGreatestCommonDivisor(119, 544));
+  }, [setData, personsData.length]);
 
   return (
     <main>
