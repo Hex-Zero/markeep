@@ -13,10 +13,8 @@ import MoreDropdown from "../components/dropdown/moreDropdown";
 import { exportToJsonFile } from "../hooks/manageDataFlow";
 import { ImportDataHelper } from "../helpers/ImportDataHelper";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { AnyRecord } from "dns";
 
 const Home: NextPage = () => {
-  //ts-ignore
   const { data, status } = useSession();
 
   const [personsData, setData] = useState<IPerson[]>([]);
