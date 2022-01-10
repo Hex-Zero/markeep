@@ -27,13 +27,6 @@ const Home: NextPage = () => {
     null
   );
 
-  const findGreatestCommonDivisor = (a: number, b: number): number => {
-    if (b === 0) {
-      return a;
-    }
-    return findGreatestCommonDivisor(b, a % b);
-  };
-
   const refresh = () => {
     const newData = getPersonsData();
     setData(newData);
@@ -62,7 +55,6 @@ const Home: NextPage = () => {
     if (!personsData.length && localStorage != null) {
       refresh();
     }
-    console.log(findGreatestCommonDivisor(119, 544));
   }, [setData, personsData.length]);
 
   return (
