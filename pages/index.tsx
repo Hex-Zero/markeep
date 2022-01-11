@@ -12,9 +12,12 @@ import { SearchBar, searchData } from "../components/SearchBar";
 import MoreDropdown from "../components/dropdown/moreDropdown";
 import { exportToJsonFile } from "../hooks/manageDataFlow";
 import { ImportDataHelper } from "../helpers/ImportDataHelper";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
-  const [data, setData] = useState<IPerson[]>([]);
+  const { data, status } = useSession();
+
+  const [personsData, setData] = useState<IPerson[]>([]);
   const [queryData, setQueryData] = useState<IPerson[]>([]);
   const [showAddPersonModal, setShowAddPersonModal] = useState(false);
   const [searchInputRef, setSearchInputRef] = useState<HTMLInputElement | null>(
@@ -28,19 +31,12 @@ const Home: NextPage = () => {
     const newData = getPersonsData();
     setData(newData);
     setQueryData(newData);
-    // test
-    console.log(process.env.DB_HOST);
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
   };
 
   const handleSearchData = (query: string) => {
     setData(searchData(queryData, query));
   };
-
-  useEffect(() => {
-    if (!data.length && localStorage != null) {
-      refresh();
-    }
-  }, [setData, data.length]);
 
   const handleAddPerson = () => {
     setShowAddPersonModal(false);
@@ -48,15 +44,27 @@ const Home: NextPage = () => {
   };
 
   const handleExport = () => {
-    exportToJsonFile(data);
+    exportToJsonFile(personsData);
   };
 
   const handleImport = () => {
     importInputRef?.click();
   };
 
+  useEffect(() => {
+    if (!personsData.length && localStorage != null) {
+      refresh();
+    }
+  }, [setData, personsData.length]);
+
   return (
     <main>
+      {/* {status === "loading" && <div>Loading..</div>}
+      {!data ? (
+        <button onClick={() => signOut()}>Sign out</button>
+      ) : (
+        <button onClick={() => signIn()}>Sign in</button>
+      )} */}
       <div
         className={`${buttonStyles.openAddButton}`}
         onClick={() => setShowAddPersonModal(true)}
@@ -79,7 +87,7 @@ const Home: NextPage = () => {
         maxWidth="350px"
       >
         <AddNewPerson
-          personsData={data}
+          personsData={personsData}
           handleAddNewPerson={handleAddPerson}
           onOpenModal={showAddPersonModal}
         ></AddNewPerson>
@@ -94,7 +102,7 @@ const Home: NextPage = () => {
         }}
       ></SearchBar>
       <div className={style.personsContainer}>
-        {data.map((person) => {
+        {personsData.map((person) => {
           return (
             <Person
               person={person}

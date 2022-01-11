@@ -90,12 +90,7 @@ export function TextArea(props: ITextAreaProps) {
         className={style.textInput}
         id={`textAreaId-${props.id}`}
         onBlur={() => props.onSave(value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            inputRef.current?.blur();
-          }
-        }}
-      />{" "}
+      />
     </>
   );
 }
