@@ -61,7 +61,7 @@ export interface ITextAreaProps {
 
 export function TextArea(props: ITextAreaProps) {
   const [value, setValue] = React.useState(props.value || "");
-  const inputRef = React.useRef<HTMLTextAreaElement>(null);
+  const inputRef = React.useRef<HTMLTextAreaElement>({} as HTMLTextAreaElement);
 
   const handleDeleteInput = () => {
     setPersonsData(
@@ -75,6 +75,12 @@ export function TextArea(props: ITextAreaProps) {
     props.onRefresh();
   };
 
+  React.useEffect(() => {
+    inputRef.current.style.height = "0px";
+    const scrollHeight = inputRef.current.scrollHeight;
+    inputRef.current.style.height = scrollHeight + "px";
+  }, [value]);
+
   return (
     <>
       <Label
@@ -87,7 +93,7 @@ export function TextArea(props: ITextAreaProps) {
         ref={inputRef}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className={style.textInput}
+        className={`${style.textInput} ${style.textArea}`}
         id={`textAreaId-${props.id}`}
         onBlur={() => props.onSave(value)}
       />
