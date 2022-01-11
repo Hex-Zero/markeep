@@ -95,7 +95,7 @@ export function TextArea(props: ITextAreaProps) {
             inputRef.current?.blur();
           }
         }}
-      />{" "}
+      />
     </>
   );
 }
