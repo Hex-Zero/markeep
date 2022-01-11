@@ -59,12 +59,12 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      {status === "loading" && <div>Loading..</div>}
+      {/* {status === "loading" && <div>Loading..</div>}
       {!data ? (
         <button onClick={() => signOut()}>Sign out</button>
       ) : (
         <button onClick={() => signIn()}>Sign in</button>
-      )}
+      )} */}
       <div
         className={`${buttonStyles.openAddButton}`}
         onClick={() => setShowAddPersonModal(true)}
