@@ -31,7 +31,7 @@ const Home: NextPage = () => {
     const newData = getPersonsData();
     setData(newData);
     setQueryData(newData);
-    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+    // console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
   };
 
   const handleSearchData = (query: string) => {
