@@ -1,3 +1,5 @@
+@import "./global.scss";
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -36,7 +38,7 @@
   position: relative;
   width: 600px;
   max-width: calc(100vw - 2rem);
-  background-color: #fff;
+  background-color: $white-color;
   border-radius: 5px;
   padding: 20px;
   margin: 1rem;
